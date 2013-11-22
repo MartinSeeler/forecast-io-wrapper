@@ -1,4 +1,4 @@
-package de.chasmo.forecastio;
+package de.chasmo.forecastio.utils;
 
 /**
  * Use these units to specify the units used in the response fields.

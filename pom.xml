@@ -25,6 +25,12 @@
             <artifactId>httpclient</artifactId>
             <version>4.3.1</version>
         </dependency>
+        <!-- JSON processing -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
