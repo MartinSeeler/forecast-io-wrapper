@@ -16,6 +16,9 @@ public class ForecastIO {
     /** Logging instance. */
     private static final Logger LOGGER = LoggerFactory.getLogger(ForecastIO.class);
 
+    /** The base domain for API requests. */
+    private static final String BASE_DOMAIN = "https://api.forecast.io/forecast/";
+
     // ===========================================================
     // Members / Fields
     // ===========================================================
@@ -28,9 +31,9 @@ public class ForecastIO {
     // ===========================================================
 
     /**
-     * Creates a new API wrapper to make requests against the API.
+     * Creates a new API wrapper to request some data from the API.
      *
-     * @param pApiKey Your Dark Sky API key to access the data.
+     * @param pApiKey Your Dark Sky API key to make requests.
      */
     public ForecastIO(String pApiKey) {
         mApiKey = pApiKey;
@@ -39,6 +42,26 @@ public class ForecastIO {
     // ===========================================================
     // Methods
     // ===========================================================
+
+    /**
+     * Performs a request to the API with the geographic coordinates of a location.
+     *
+     * @param pLatitude  The requested latitude.
+     * @param pLongitude The requested longitude.
+     */
+    public void getForecast(final double pLatitude, final double pLongitude) {
+        throw new UnsupportedOperationException("Not implemented yet!");
+    }
+
+    /**
+     * Performs a request to the API with the geographic coordinates of a location at a given time.
+     *
+     * @param pLatitude  The requested latitude.
+     * @param pLongitude The requested longitude.
+     */
+    public void getForecast(final double pLatitude, final double pLongitude, final long pUnixtime) {
+        throw new UnsupportedOperationException("Not implemented yet!");
+    }
 
     // ===========================================================
     // Getter & Setter
