@@ -25,6 +25,12 @@
             <artifactId>jackson-mapper-asl</artifactId>
             <version>1.9.13</version>
         </dependency>
+        <!-- to express myself -->
+        <dependency>
+            <groupId>com.google.gag</groupId>
+            <artifactId>gag</artifactId>
+            <version>1.0.1</version>
+        </dependency>
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>

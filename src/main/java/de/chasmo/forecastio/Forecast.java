@@ -1,5 +1,6 @@
 package de.chasmo.forecastio;
 
+import com.google.gag.annotation.remark.RTFM;
 import de.chasmo.forecastio.data.DailyDataBlock;
 import de.chasmo.forecastio.data.HourlyDataBlock;
 import de.chasmo.forecastio.data.HourlyDataPoint;
@@ -8,9 +9,12 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
+ * Representing the retrieved forecast from the API with all parsed fields.
+ *
  * @author Martin Seeler <developer@chasmo.de>
  * @since 22.11.13 - 23:25
  */
+@RTFM("https://developer.forecast.io/docs/v2")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Forecast {
 
@@ -22,10 +26,13 @@ public class Forecast {
     // Members / Fields
     // ===========================================================
 
+    /** The requested latitude. */
     private double mLatitude;
 
+    /** The requested longitude. */
     private double mLongitude;
 
+    /** The IANA timezone name for the requested location. */
     private String mTimezone;
 
     private int mOffset;
@@ -50,6 +57,7 @@ public class Forecast {
     // Getter & Setter
     // ===========================================================
 
+    /** @return The requested latitude. */
     @JsonProperty("latitude")
     public double getLatitude() {
         return mLatitude;
@@ -60,6 +68,7 @@ public class Forecast {
         mLatitude = pLatitude;
     }
 
+    /** @return The requested longitude. */
     @JsonProperty("longitude")
     public double getLongitude() {
         return mLongitude;
@@ -70,6 +79,12 @@ public class Forecast {
         mLongitude = pLongitude;
     }
 
+    /**
+     * The IANA timezone name for the requested location (e.g. <code>America/New_York</code>). This is the timezone used
+     * for text forecast summaries and for determining the exact start time of daily data points.
+     *
+     * @return The IANA timezone name for the requested location.
+     */
     @JsonProperty("timezone")
     public String getTimezone() {
         return mTimezone;

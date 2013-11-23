@@ -16,6 +16,7 @@
 .*
 !.gitignore
 !.git*
+!.travis.yml
 *~
 
 ### Maven ###

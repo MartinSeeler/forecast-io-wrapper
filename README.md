@@ -1,7 +1,16 @@
-Forecast.io Java Wrapper
+Forecast.io Java Wrapper [![Build Status](https://travis-ci.org/MartinSeeler/forecast-io-wrapper.png?branch=master)](https://travis-ci.org/MartinSeeler/forecast-io-wrapper)
 ===================
 
 > A Java wrapper library for the v2 Forecast API provided by The Dark Sky Company, LLC.
+
+##About
+
+The Forecast API lets you query for most locations on the globe, and returns:
+
+- Current conditions
+- Minute-by-minute forecasts out to 1 hour (where available)
+- Hour-by-hour forecasts out to 48 hours
+- Day-by-day forecasts out to 7 days
 
 ##Samples
 

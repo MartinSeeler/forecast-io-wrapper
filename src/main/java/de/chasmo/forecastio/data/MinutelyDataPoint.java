@@ -1,5 +1,6 @@
 package de.chasmo.forecastio.data;
 
+import com.google.gag.annotation.remark.RTFM;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
@@ -7,6 +8,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @author Martin Seeler <developer@chasmo.de>
  * @since 23.11.13 - 00:05
  */
+@RTFM("https://developer.forecast.io/docs/v2")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MinutelyDataPoint {
 
@@ -18,6 +20,7 @@ public class MinutelyDataPoint {
     // Members / Fields
     // ===========================================================
 
+    /** The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs. */
     private long mTime;
 
     private double mPrecipIntensity;
@@ -40,23 +43,34 @@ public class MinutelyDataPoint {
     // Getter & Setter
     // ===========================================================
 
+    /** @return The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs. */
     @JsonProperty("time")
-    public long getTime() {
+    public final long getTime() {
         return mTime;
     }
 
+    /** @param pTime The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs. */
     @JsonProperty("time")
-    public void setTime(long pTime) {
+    public final void setTime(long pTime) {
         mTime = pTime;
     }
 
+    /**
+     * A numerical value representing the average expected intensity (in inches of liquid water per hour) of
+     * precipitation occurring at the given time conditional on probability (that is, assuming any precipitation occurs
+     * at all). A very rough guide is that a value of 0 in./hr. corresponds to no precipitation, 0.002 in./hr.
+     * corresponds to very light precipitation, 0.017 in./hr. corresponds to light precipitation, 0.1 in./hr.
+     * corresponds to moderate precipitation, and 0.4 in./hr. corresponds to heavy precipitation.
+     *
+     * @return The expected intensity of precipitation if available, <code>0.0d</code> otherwise.
+     */
     @JsonProperty("precipIntensity")
-    public double getPrecipIntensity() {
+    public final double getPrecipIntensity() {
         return mPrecipIntensity;
     }
 
     @JsonProperty("precipIntensity")
-    public void setPrecipIntensity(double pPrecipIntensity) {
+    public final void setPrecipIntensity(double pPrecipIntensity) {
         mPrecipIntensity = pPrecipIntensity;
     }
 
