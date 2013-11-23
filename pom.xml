@@ -19,12 +19,6 @@
 
     <dependencies>
 
-        <!-- for GET Requests -->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.3.1</version>
-        </dependency>
         <!-- JSON processing -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>

@@ -22,6 +22,8 @@ public class HourlyDataPoint extends MinutelyDataPoint {
 
     private double mTemperature;
 
+    private double mApparentTemperature;
+
     // ===========================================================
     // Constructors
     // ===========================================================
@@ -62,6 +64,16 @@ public class HourlyDataPoint extends MinutelyDataPoint {
     @JsonProperty("temperature")
     public void setTemperature(double pTemperature) {
         mTemperature = pTemperature;
+    }
+
+    @JsonProperty("apparentTemperature")
+    public double getApparentTemperature() {
+        return mApparentTemperature;
+    }
+
+    @JsonProperty("apparentTemperature")
+    public void setApparentTemperature(double pApparentTemperature) {
+        mApparentTemperature = pApparentTemperature;
     }
 
     // ===========================================================

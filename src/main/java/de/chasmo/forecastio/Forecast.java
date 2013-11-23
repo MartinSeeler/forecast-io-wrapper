@@ -12,7 +12,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
  * @since 22.11.13 - 23:25
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ForecastIOResponse {
+public class Forecast {
 
     // ===========================================================
     // Constants

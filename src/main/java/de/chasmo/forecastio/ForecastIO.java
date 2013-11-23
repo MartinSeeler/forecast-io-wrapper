@@ -1,13 +1,21 @@
 package de.chasmo.forecastio;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
+ * Wrapper class to execute the API requests and retrieve data.
+ *
  * @author Martin Seeler <developer@chasmo.de>
  * @since 22.11.13 - 22:01
  */
-public class ForecastIO {
+public final class ForecastIO {
 
     // ===========================================================
     // Constants
@@ -17,7 +25,7 @@ public class ForecastIO {
     private static final Logger LOGGER = LoggerFactory.getLogger(ForecastIO.class);
 
     /** The base domain for API requests. */
-    private static final String BASE_DOMAIN = "https://api.forecast.io/forecast/";
+    private static final String BASE_DOMAIN = "https://api.forecast.io/forecast";
 
     // ===========================================================
     // Members / Fields
@@ -49,19 +57,19 @@ public class ForecastIO {
      * @param pLatitude  The requested latitude.
      * @param pLongitude The requested longitude.
      */
-    public void getForecast(final double pLatitude, final double pLongitude) {
-        throw new UnsupportedOperationException("Not implemented yet!");
-    }
-
-    /**
-     * Performs a request to the API with the geographic coordinates of a location at a given time.
-     *
-     * @param pLatitude  The requested latitude.
-     * @param pLongitude The requested longitude.
-     * @param pUnixtime  The time.
-     */
-    public void getForecast(final double pLatitude, final double pLongitude, final long pUnixtime) {
-        throw new UnsupportedOperationException("Not implemented yet!");
+    public Forecast getForecast(final double pLatitude, final double pLongitude) {
+        URL url = null;
+        try {
+            url = new URL(BASE_DOMAIN + '/' + mApiKey + '/' + pLatitude + ',' + pLongitude + "?units=si");
+            final InputStream responseStream = url.openStream();
+            final ObjectMapper mapper = new ObjectMapper();
+            return mapper.readValue(responseStream, Forecast.class);
+        } catch (MalformedURLException e) {
+            LOGGER.warn("There was an error building the URL for this request!", e);
+        } catch (IOException e) {
+            LOGGER.warn("There was an error while reading the data!", e);
+        }
+        return null;
     }
 
     // ===========================================================
