@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Forecast-io-wrapper by MartinSeeler</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Forecast-io-wrapper</h1>
+        <p>Java wrapper library for the v2 Forecast API provided by The Dark Sky Company, LLC.</p>
+
+        <p class="view"><a href="https://github.com/MartinSeeler/forecast-io-wrapper">View the Project on GitHub <small>MartinSeeler/forecast-io-wrapper</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/MartinSeeler/forecast-io-wrapper/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/MartinSeeler/forecast-io-wrapper/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/MartinSeeler/forecast-io-wrapper">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="forecastio-java-wrapper-" class="anchor" href="#forecastio-java-wrapper-"><span class="octicon octicon-link"></span></a>Forecast.io Java Wrapper <a href="https://travis-ci.org/MartinSeeler/forecast-io-wrapper"><img src="https://travis-ci.org/MartinSeeler/forecast-io-wrapper.png?branch=master" alt="Build Status"></a>
+</h1>
+
+<blockquote>
+<p>A Java wrapper library for the v2 Forecast API provided by The Dark Sky Company, LLC.</p>
+</blockquote>
+
+<h2>
+<a name="about" class="anchor" href="#about"><span class="octicon octicon-link"></span></a>About</h2>
+
+<p>The Forecast API lets you query for most locations on the globe, and returns:</p>
+
+<ul>
+<li>Current conditions</li>
+<li>Minute-by-minute forecasts out to 1 hour (where available)</li>
+<li>Hour-by-hour forecasts out to 48 hours</li>
+<li>Day-by-day forecasts out to 7 days</li>
+</ul><h2>
+<a name="samples" class="anchor" href="#samples"><span class="octicon octicon-link"></span></a>Samples</h2>
+
+<p>A simple request for the current temperature:</p>
+
+<div class="highlight highlight-java"><pre><span class="c1">// specify your API key</span>
+<span class="kd">final</span> <span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"replace-with-your-key"</span><span class="o">;</span>
+<span class="kd">final</span> <span class="n">ForecastIO</span> <span class="n">forecastIO</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ForecastIO</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
+
+<span class="c1">// coordinates for Dresden, Germany</span>
+<span class="kd">final</span> <span class="kt">double</span> <span class="n">latitude</span> <span class="o">=</span> <span class="mf">51.0504d</span><span class="o">;</span>
+<span class="kd">final</span> <span class="kt">double</span> <span class="n">longitude</span> <span class="o">=</span> <span class="mf">13.7373d</span><span class="o">;</span>
+
+<span class="c1">// retrieve the current forecast</span>
+<span class="kd">final</span> <span class="n">Forecast</span> <span class="n">forecast</span> <span class="o">=</span> <span class="n">forecastIO</span><span class="o">.</span><span class="na">getForecast</span><span class="o">(</span><span class="n">latitude</span><span class="o">,</span> <span class="n">longitude</span><span class="o">);</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Current temperature is "</span> <span class="o">+</span> <span class="n">forecast</span><span class="o">.</span><span class="na">getCurrently</span><span class="o">().</span><span class="na">getTemperature</span><span class="o">());</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Apparent temperature is "</span> <span class="o">+</span> <span class="n">forecast</span><span class="o">.</span><span class="na">getCurrently</span><span class="o">().</span><span class="na">getApparentTemperature</span><span class="o">());</span>
+</pre></div>
+
+<p>Get sunrise and sunset time for the specified timezone:</p>
+
+<div class="highlight highlight-java"><pre><span class="c1">// specify your API key</span>
+<span class="kd">final</span> <span class="n">String</span> <span class="n">apiKey</span> <span class="o">=</span> <span class="s">"replace-with-your-key"</span><span class="o">;</span>
+<span class="kd">final</span> <span class="n">ForecastIO</span> <span class="n">forecastIO</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ForecastIO</span><span class="o">(</span><span class="n">apiKey</span><span class="o">);</span>
+
+<span class="c1">// coordinates for New York, New York, United States</span>
+<span class="kd">final</span> <span class="kt">double</span> <span class="n">latitude</span> <span class="o">=</span> <span class="mf">40.7142d</span><span class="o">;</span>
+<span class="kd">final</span> <span class="kt">double</span> <span class="n">longitude</span> <span class="o">=</span> <span class="o">-</span><span class="mf">74.0064d</span><span class="o">;</span>
+
+<span class="c1">// retrieve the current forecast</span>
+<span class="kd">final</span> <span class="n">Forecast</span> <span class="n">forecast</span> <span class="o">=</span> <span class="n">forecastIO</span><span class="o">.</span><span class="na">getForecast</span><span class="o">(</span><span class="n">latitude</span><span class="o">,</span> <span class="n">longitude</span><span class="o">);</span>
+
+<span class="c1">// get current day block</span>
+<span class="kd">final</span> <span class="n">DailyDataPoint</span> <span class="n">today</span> <span class="o">=</span> <span class="n">forecast</span><span class="o">.</span><span class="na">getDaily</span><span class="o">().</span><span class="na">getDataPoints</span><span class="o">()[</span><span class="mi">0</span><span class="o">];</span>
+
+<span class="c1">// java is expecting milliseconds, so we have to multiply the timestamp with 1.000</span>
+<span class="kd">final</span> <span class="n">Date</span> <span class="n">sunriseDate</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="n">today</span><span class="o">.</span><span class="na">getSunriseTime</span><span class="o">()</span> <span class="o">*</span> <span class="mi">1000L</span><span class="o">);</span>
+<span class="kd">final</span> <span class="n">Date</span> <span class="n">sunsetDate</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="n">today</span><span class="o">.</span><span class="na">getSunsetTime</span><span class="o">()</span> <span class="o">*</span> <span class="mi">1000L</span><span class="o">);</span>
+
+<span class="c1">// prepare time format</span>
+<span class="kd">final</span> <span class="n">SimpleDateFormat</span> <span class="n">isoFormat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleDateFormat</span><span class="o">(</span><span class="s">"HH:mm:ss"</span><span class="o">);</span>
+<span class="n">isoFormat</span><span class="o">.</span><span class="na">setTimeZone</span><span class="o">(</span><span class="n">TimeZone</span><span class="o">.</span><span class="na">getTimeZone</span><span class="o">(</span><span class="n">forecast</span><span class="o">.</span><span class="na">getTimezone</span><span class="o">()));</span>
+
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sunrise today was at "</span> <span class="o">+</span> <span class="n">isoFormat</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">sunriseDate</span><span class="o">));</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sunset today will be at "</span> <span class="o">+</span> <span class="n">isoFormat</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">sunsetDate</span><span class="o">));</span>
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/MartinSeeler">MartinSeeler</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-31370927-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
