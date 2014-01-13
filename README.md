@@ -58,3 +58,7 @@ isoFormat.setTimeZone(TimeZone.getTimeZone(forecast.getTimezone()));
 System.out.println("Sunrise today was at " + isoFormat.format(sunriseDate));
 System.out.println("Sunset today will be at " + isoFormat.format(sunsetDate));
 ```
+
+## Scala
+
+If you`d like to use Scala instead, have a look at [forecast-io-scala](https://github.com/knutwalker/forecast-io-scala), which runs on top of [Akka](http://akka.io).
