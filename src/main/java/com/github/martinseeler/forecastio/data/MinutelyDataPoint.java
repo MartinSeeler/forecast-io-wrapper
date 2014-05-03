@@ -16,23 +16,32 @@ public class MinutelyDataPoint {
   // Constants
   // ===========================================================
 
+  private static final String TIME = "time";
+
+  private static final String PRECIP_INTENSITY = "precipIntensity";
+
+  private static final String PRECIP_PROBABILITY = "precipProbability";
+
+  private static final String PRECIP_INTENSITY_ERROR = "precipIntensityError";
+
+  private static final String PRECIP_TYPE = "precipType";
+
   // ===========================================================
   // Members / Fields
   // ===========================================================
 
   /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point
-   * occurs.
+   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs.
    */
-  private long mTime;
+  private long time;
 
-  private double mPrecipIntensity;
+  private double precipIntensity;
 
-  private double mPrecipProbability;
+  private double precipProbability;
 
-  private double mPrecipIntensityError;
+  private double precipIntensityError;
 
-  private String mPrecipType;
+  private String precipType;
 
   // ===========================================================
   // Constructors
@@ -47,76 +56,81 @@ public class MinutelyDataPoint {
   // ===========================================================
 
   /**
-   * @return The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data
-   * point occurs.
+   * @return The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs.
    */
-  @JsonProperty("time")
+  @JsonProperty(TIME)
   public final long getTime() {
-    return mTime;
+    return time;
   }
 
   /**
-   * @param pTime The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this
-   *              data point occurs.
+   * @param time The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs.
    */
-  @JsonProperty("time")
-  public final void setTime(long pTime) {
-    mTime = pTime;
+  @JsonProperty(TIME)
+  public final void setTime(final long time) {
+    this.time = time;
   }
 
   /**
-   * A numerical value representing the average expected intensity (in inches of liquid water per
-   * hour) of precipitation occurring at the given time conditional on probability (that is,
-   * assuming any precipitation occurs at all). A very rough guide is that a value of 0 in./hr.
-   * corresponds to no precipitation, 0.002 in./hr. corresponds to very light precipitation, 0.017
-   * in./hr. corresponds to light precipitation, 0.1 in./hr. corresponds to moderate precipitation,
+   * A numerical value representing the average expected intensity (in inches of liquid water per hour) of precipitation
+   * occurring at the given time conditional on probability (that is, assuming any precipitation occurs at all). A very
+   * rough guide is that a value of 0 in./hr. corresponds to no precipitation, 0.002 in./hr. corresponds to very light
+   * precipitation, 0.017 in./hr. corresponds to light precipitation, 0.1 in./hr. corresponds to moderate precipitation,
    * and 0.4 in./hr. corresponds to heavy precipitation.
    *
-   * @return The expected intensity of precipitation if available, <code>0.0d</code> otherwise.
+   * @return The expected intensity of precipitation if available, {@code 0.0d} otherwise.
    */
-  @JsonProperty("precipIntensity")
+  @JsonProperty(PRECIP_INTENSITY)
   public final double getPrecipIntensity() {
-    return mPrecipIntensity;
+    return precipIntensity;
   }
 
-  @JsonProperty("precipIntensity")
-  public final void setPrecipIntensity(double pPrecipIntensity) {
-    mPrecipIntensity = pPrecipIntensity;
+  @JsonProperty(PRECIP_INTENSITY)
+  public final void setPrecipIntensity(final double precipIntensity) {
+    this.precipIntensity = precipIntensity;
   }
 
-  @JsonProperty("precipProbability")
-  public double getPrecipProbability() {
-    return mPrecipProbability;
+  @JsonProperty(PRECIP_PROBABILITY)
+  public final double getPrecipProbability() {
+    return precipProbability;
   }
 
-  @JsonProperty("precipProbability")
-  public void setPrecipProbability(double pPrecipProbability) {
-    mPrecipProbability = pPrecipProbability;
+  @JsonProperty(PRECIP_PROBABILITY)
+  public final void setPrecipProbability(final double precipProbability) {
+    this.precipProbability = precipProbability;
   }
 
-  @JsonProperty("precipIntensityError")
-  public double getPrecipIntensityError() {
-    return mPrecipIntensityError;
+  @JsonProperty(PRECIP_INTENSITY_ERROR)
+  public final double getPrecipIntensityError() {
+    return precipIntensityError;
   }
 
-  @JsonProperty("precipIntensityError")
-  public void setPrecipIntensityError(double pPrecipIntensityError) {
-    mPrecipIntensityError = pPrecipIntensityError;
+  @JsonProperty(PRECIP_INTENSITY_ERROR)
+  public final void setPrecipIntensityError(final double precipIntensityError) {
+    this.precipIntensityError = precipIntensityError;
   }
 
-  @JsonProperty("precipType")
-  public String getPrecipType() {
-    return mPrecipType;
+  @JsonProperty(PRECIP_TYPE)
+  public final String getPrecipType() {
+    return precipType;
   }
 
-  @JsonProperty("precipType")
-  public void setPrecipType(String pPrecipType) {
-    mPrecipType = pPrecipType;
+  @JsonProperty(PRECIP_TYPE)
+  public final void setPrecipType(final String precipType) {
+    this.precipType = precipType;
   }
 
   // ===========================================================
   // Methods for/from SuperClass/Interfaces
   // ===========================================================
+
+  @Override
+  public String toString() {
+    return String.format(
+        "MinutelyDataPoint{time=%d, precipIntensity=%s, precipProbability=%s, precipIntensityError=%s, "
+            + "precipType='%s'}", time, precipIntensity, precipProbability, precipIntensityError, precipType
+    );
+  }
 
   // ===========================================================
   // Inner and Anonymous Classes

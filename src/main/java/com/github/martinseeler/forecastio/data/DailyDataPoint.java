@@ -16,6 +16,10 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   // Constants
   // ===========================================================
 
+  private static final String SUNSET_TIME = "sunsetTime";
+
+  private static final String SUNRISE_TIME = "sunriseTime";
+
   // ===========================================================
   // Members / Fields
   // ===========================================================
@@ -24,7 +28,7 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   private long sunriseTime;
 
   /** UNIX time of sunset at this day. */
-  private long mSunsetTime;
+  private long sunsetTime;
 
   // ===========================================================
   // Constructors
@@ -39,43 +43,47 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   // ===========================================================
 
   /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunrise on the given day.
-   * (If no sunrise will occur on the given day, then the field will be 0. This can occur during
-   * summer and winter in very high or low latitudes.)
+   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunrise on the given day. (If no sunrise will
+   * occur on the given day, then the field will be 0. This can occur during summer and winter in very high or low
+   * latitudes.)
    *
    * @return The UNIX time of sunrise if available, {@code 0} otherwise.
    */
-  @JsonProperty("sunriseTime")
+  @JsonProperty(SUNRISE_TIME)
   public long getSunriseTime() {
     return sunriseTime;
   }
 
-  @JsonProperty("sunriseTime")
+  @JsonProperty(SUNRISE_TIME)
   public void setSunriseTime(final long sunriseTime) {
     this.sunriseTime = sunriseTime;
   }
 
   /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunset on the given day.
-   * (If no sunset will occur on the given day, then the field will be 0. This can occur during
-   * summer and winter in very high or low latitudes.)
+   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunset on the given day. (If no sunset will
+   * occur on the given day, then the field will be 0. This can occur during summer and winter in very high or low
+   * latitudes.)
    *
-   * @return The UNIX time of sunset if available, <code>0</code> otherwise.
+   * @return The UNIX time of sunset if available, {@code 0} otherwise.
    */
-  @JsonProperty("sunsetTime")
+  @JsonProperty(SUNSET_TIME)
   public long getSunsetTime() {
-    return mSunsetTime;
+    return sunsetTime;
   }
 
-  @JsonProperty("sunsetTime")
-  public void setSunsetTime(long pSunsetTime) {
-    mSunsetTime = pSunsetTime;
+  @JsonProperty(SUNSET_TIME)
+  public void setSunsetTime(final long sunsetTime) {
+    this.sunsetTime = sunsetTime;
   }
-
 
   // ===========================================================
   // Methods for/from SuperClass/Interfaces
   // ===========================================================
+
+  @Override
+  public String toString() {
+    return String.format("DailyDataPoint{sunriseTime=%d, sunsetTime=%d}", sunriseTime, sunsetTime);
+  }
 
   // ===========================================================
   // Inner and Anonymous Classes

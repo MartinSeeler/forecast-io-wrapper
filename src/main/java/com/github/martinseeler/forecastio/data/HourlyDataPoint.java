@@ -16,33 +16,45 @@ public final class HourlyDataPoint extends MinutelyDataPoint {
   // Constants
   // ===========================================================
 
+  private static final String TEMPERATURE = "temperature";
+
+  private static final String APPARENT_TEMPERATURE = "apparentTemperature";
+
+  private static final String DEW_POINT = "dewPoint";
+
+  private static final String HUMIDITY = "humidity";
+
+  private static final String WIND_SPEED = "windSpeed";
+
+  private static final String WIND_BEARING = "windBearing";
+  
   // ===========================================================
   // Members / Fields
   // ===========================================================
 
   /** A human-readable text summary of this hour. */
-  private String mSummary;
+  private String summary;
 
   /** The machine-readable text summary. */
-  private String mIcon;
+  private String icon;
 
   /** The temperature at this hour. */
-  private double mTemperature;
+  private double temperature;
 
   /** The apparent temperature at this hour. */
-  private double mApparentTemperature;
+  private double apparentTemperature;
 
   /** The dew point at the given time, */
-  private double mDewPoint;
+  private double dewPoint;
 
   /** The relative humidity. */
-  private double mHumidity;
+  private double humidity;
 
   /** The wind speed. */
-  private double mWindSpeed;
+  private double windSpeed;
 
   /** The direction that the wind is coming from. */
-  private int mWindBearing;
+  private int windBearing;
 
   // ===========================================================
   // Constructors
@@ -59,136 +71,137 @@ public final class HourlyDataPoint extends MinutelyDataPoint {
   /** @return A human-readable text summary of this hour. */
   @JsonProperty(DailyDataBlock.SUMMARY_PROPERTY)
   public String getSummary() {
-    return mSummary;
+    return summary;
   }
 
   @JsonProperty(DailyDataBlock.SUMMARY_PROPERTY)
-  public void setSummary(String pSummary) {
-    mSummary = pSummary;
+  public void setSummary(final String summary) {
+    this.summary = summary;
   }
 
   /**
-   * A machine-readable text summary of this data point, suitable for selecting an icon for
-   * display.
-   * If defined, this property will have one of the following values: clear-day, clear-night,
-   * rain,
-   * snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.
+   * A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this
+   * property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy,
+   * partly-cloudy-day, or partly-cloudy-night.
    *
    * @return The machine-readable text summary.
    */
-  @JsonProperty("icon")
+  @JsonProperty(DailyDataBlock.ICON_PROPERTY)
   public String getIcon() {
-    return mIcon;
+    return icon;
   }
 
-  @JsonProperty("icon")
-  public void setIcon(String pIcon) {
-    mIcon = pIcon;
+  @JsonProperty(DailyDataBlock.ICON_PROPERTY)
+  public void setIcon(final String icon) {
+    this.icon = icon;
   }
 
   /**
-   * A numerical value representing the temperature at the given time (in degrees Fahrenheit,
-   * if not
-   * specified through the units parameter).
+   * A numerical value representing the temperature at the given time (in degrees Fahrenheit, if not specified through
+   * the units parameter).
    *
-   * @return The temperature at this hour if available, <code>0</code> otherwise.
+   * @return The temperature at this hour if available, {@code 0} otherwise.
    */
-  @JsonProperty("temperature")
+  @JsonProperty(TEMPERATURE)
   public double getTemperature() {
-    return mTemperature;
+    return temperature;
   }
 
-  @JsonProperty("temperature")
-  public void setTemperature(double pTemperature) {
-    mTemperature = pTemperature;
+  @JsonProperty(TEMPERATURE)
+  public void setTemperature(final double temperature) {
+    this.temperature = temperature;
   }
 
   /**
-   * A numerical value representing the apparent (or “feels like”) temperature at the given
-   * time (in
-   * degrees Fahrenheit, if not specified through the units parameter).
+   * A numerical value representing the apparent (or “feels like”) temperature at the given time (in degrees Fahrenheit,
+   * if not specified through the units parameter).
    *
-   * @return The apparent temperature at this hour if available, <code>0</code> otherwise.
+   * @return The apparent temperature at this hour if available, {@code 0} otherwise.
    */
-  @JsonProperty("apparentTemperature")
+  @JsonProperty(APPARENT_TEMPERATURE)
   public double getApparentTemperature() {
-    return mApparentTemperature;
+    return apparentTemperature;
   }
 
-  @JsonProperty("apparentTemperature")
-  public void setApparentTemperature(double pApparentTemperature) {
-    mApparentTemperature = pApparentTemperature;
+  @JsonProperty(APPARENT_TEMPERATURE)
+  public void setApparentTemperature(final double apparentTemperature) {
+    this.apparentTemperature = apparentTemperature;
   }
 
   /**
-   * A numerical value representing the dew point at the given time (in degrees Fahrenheit, if not
-   * specified through the units parameter).
+   * A numerical value representing the dew point at the given time (in degrees Fahrenheit, if not specified through the
+   * units parameter).
    *
-   * @return The dew point if available, <code>0</code> otherwise.
+   * @return The dew point if available, {@code 0} otherwise.
    */
-  @JsonProperty("dewPoint")
+  @JsonProperty(DEW_POINT)
   public double getDewPoint() {
-    return mDewPoint;
+    return dewPoint;
   }
 
-  @JsonProperty("dewPoint")
-  public void setDewPoint(double pDewPoint) {
-    mDewPoint = pDewPoint;
+  @JsonProperty(DEW_POINT)
+  public void setDewPoint(final double dewPoint) {
+    this.dewPoint = dewPoint;
   }
 
   /**
    * A numerical value between 0 and 1 (inclusive) representing the relative humidity.
    *
-   * @return The relative humidity if available, <code>0</code> otherwise.
+   * @return The relative humidity if available, {@code 0} otherwise.
    */
-  @JsonProperty("humidity")
+  @JsonProperty(HUMIDITY)
   public double getHumidity() {
-    return mHumidity;
+    return humidity;
   }
 
-  @JsonProperty("humidity")
-  public void setHumidity(double pHumidity) {
-    mHumidity = pHumidity;
+  @JsonProperty(HUMIDITY)
+  public void setHumidity(final double humidity) {
+    this.humidity = humidity;
   }
 
   /**
-   * A numerical value representing the wind speed (in miles per hour,
-   * if not specified through the
-   * units parameter).
+   * A numerical value representing the wind speed (in miles per hour, if not specified through the units parameter).
    *
-   * @return The wind speed if available, <code>0</code> otherwise.
+   * @return The wind speed if available, {@code 0} otherwise.
    */
-  @JsonProperty("windSpeed")
+  @JsonProperty(WIND_SPEED)
   public double getWindSpeed() {
-    return mWindSpeed;
+    return windSpeed;
   }
 
-  @JsonProperty("windSpeed")
-  public void setWindSpeed(double pWindSpeed) {
-    mWindSpeed = pWindSpeed;
+  @JsonProperty(WIND_SPEED)
+  public void setWindSpeed(final double windSpeed) {
+    this.windSpeed = windSpeed;
   }
 
   /**
-   * A numerical value representing the direction that the wind is coming from in degrees,
-   * with true
-   * north at 0° and progressing clockwise. (If windSpeed is zero, then this value will be 0,
-   * too.)
+   * A numerical value representing the direction that the wind is coming from in degrees, with true north at 0° and
+   * progressing clockwise. (If windSpeed is zero, then this value will be 0, too.)
    *
-   * @return The direction that the wind is coming from if available, <code>0</code> otherwise.
+   * @return The direction that the wind is coming from if available, {@code 0} otherwise.
    */
-  @JsonProperty("windBearing")
+  @JsonProperty(WIND_BEARING)
   public int getWindBearing() {
-    return mWindBearing;
+    return windBearing;
   }
 
-  @JsonProperty("windBearing")
-  public void setWindBearing(int pWindBearing) {
-    mWindBearing = pWindBearing;
+  @JsonProperty(WIND_BEARING)
+  public void setWindBearing(final int windBearing) {
+    this.windBearing = windBearing;
   }
 
   // ===========================================================
   // Methods for/from SuperClass/Interfaces
   // ===========================================================
+
+  @Override
+  public String toString() {
+    return String.format(
+        "HourlyDataPoint{summary='%s', icon='%s', temperature=%s, apparentTemperature=%s, dewPoint=%s, "
+            + "humidity=%s, windSpeed=%s, windBearing=%d}", summary, icon, temperature, apparentTemperature, dewPoint,
+        humidity, windSpeed, windBearing
+    );
+  }
 
   // ===========================================================
   // Inner and Anonymous Classes

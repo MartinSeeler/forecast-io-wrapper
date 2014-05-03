@@ -20,9 +20,9 @@ public final class DailyDataBlock {
 
   public static final String SUMMARY_PROPERTY = "summary";
 
-  private static final String ICON_PROPERTY = "icon";
+  public static final String ICON_PROPERTY = "icon";
 
-  private static final String DATA_PROPERTY = "data";
+  public static final String DATA_PROPERTY = "data";
 
   // ===========================================================
   // Members / Fields
@@ -60,9 +60,9 @@ public final class DailyDataBlock {
   }
 
   /**
-   * A machine-readable text summary of this data point, suitable for selecting an icon for display.
-   * If defined, this property will have one of the following values: clear-day, clear-night, rain,
-   * snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.
+   * A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this
+   * property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy,
+   * partly-cloudy-day, or partly-cloudy-night.
    *
    * @return The machine-readable text summary.
    */

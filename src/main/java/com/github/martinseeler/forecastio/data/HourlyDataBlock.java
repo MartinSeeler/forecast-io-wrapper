@@ -60,7 +60,7 @@ public final class HourlyDataBlock {
    *
    * @return The machine-readable text summary.
    */
-  @JsonProperty("icon")
+  @JsonProperty()
   public String getIcon() {
     return mIcon;
   }
