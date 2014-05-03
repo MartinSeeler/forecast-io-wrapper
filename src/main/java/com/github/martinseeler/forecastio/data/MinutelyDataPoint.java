@@ -90,6 +90,10 @@ public class MinutelyDataPoint {
     this.precipIntensity = precipIntensity;
   }
 
+  /**
+   * @return A numerical value between 0 and 1 (inclusive) representing the probability of precipitation occuring at the
+   * given time.
+   */
   @JsonProperty(PRECIP_PROBABILITY)
   public final double getPrecipProbability() {
     return precipProbability;
@@ -110,6 +114,12 @@ public class MinutelyDataPoint {
     this.precipIntensityError = precipIntensityError;
   }
 
+  /**
+   * @return A string representing the type of precipitation occurring at the given time. If defined, this property will
+   * have one of the following values: {@code rain}, {@code snow}, {@code sleet} (which applies to each of freezing
+   * rain, ice pellets, and “wintery mix”), or {@code hail}. (If {@link MinutelyDataPoint#getPrecipIntensity()} is zero,
+   * then this property will not be defined.
+   */
   @JsonProperty(PRECIP_TYPE)
   public final String getPrecipType() {
     return precipType;
