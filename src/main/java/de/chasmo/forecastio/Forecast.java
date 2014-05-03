@@ -1,12 +1,13 @@
 package de.chasmo.forecastio;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
 import de.chasmo.forecastio.data.DailyDataBlock;
+import de.chasmo.forecastio.data.DailyDataPoint;
 import de.chasmo.forecastio.data.HourlyDataBlock;
 import de.chasmo.forecastio.data.HourlyDataPoint;
 import de.chasmo.forecastio.data.MinutelyDataBlock;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * Representing the retrieved forecast from the API with all parsed fields.
@@ -18,139 +19,146 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Forecast {
 
-    // ===========================================================
-    // Constants
-    // ===========================================================
+  private static final String LONGITUDE = "longitude";
 
-    // ===========================================================
-    // Members / Fields
-    // ===========================================================
+  // ===========================================================
+  // Constants
+  // ===========================================================
 
-    /** The requested latitude. */
-    private double mLatitude;
+  // ===========================================================
+  // Members / Fields
+  // ===========================================================
 
-    /** The requested longitude. */
-    private double mLongitude;
+  /** The requested latitude. */
+  private double mLatitude;
 
-    /** The IANA timezone name for the requested location. */
-    private String mTimezone;
+  /** The requested longitude. */
+  private double mLongitude;
 
-    private int mOffset;
+  /** The IANA timezone name for the requested location. */
+  private String mTimezone;
 
-    private HourlyDataPoint mCurrently;
+  private int mOffset;
 
-    private MinutelyDataBlock mMinutely;
+  private HourlyDataPoint mCurrently;
 
-    private HourlyDataBlock mHourly;
+  private MinutelyDataBlock mMinutely;
 
-    private DailyDataBlock mDaily;
+  private HourlyDataBlock mHourly;
 
-    // ===========================================================
-    // Constructors
-    // ===========================================================
+  private DailyDataBlock mDaily;
 
-    // ===========================================================
-    // Methods
-    // ===========================================================
+  // ===========================================================
+  // Constructors
+  // ===========================================================
 
-    // ===========================================================
-    // Getter & Setter
-    // ===========================================================
+  // ===========================================================
+  // Methods
+  // ===========================================================
 
-    /** @return The requested latitude. */
-    @JsonProperty("latitude")
-    public double getLatitude() {
-        return mLatitude;
-    }
+  // ===========================================================
+  // Getter & Setter
+  // ===========================================================
 
-    @JsonProperty("latitude")
-    public void setLatitude(double pLatitude) {
-        mLatitude = pLatitude;
-    }
+  /** @return The requested latitude. */
+  @JsonProperty("latitude")
+  public double getLatitude() {
+    return mLatitude;
+  }
 
-    /** @return The requested longitude. */
-    @JsonProperty("longitude")
-    public double getLongitude() {
-        return mLongitude;
-    }
+  @JsonProperty("latitude")
+  public void setLatitude(double pLatitude) {
+    mLatitude = pLatitude;
+  }
 
-    @JsonProperty("longitude")
-    public void setLongitude(double pLongitude) {
-        mLongitude = pLongitude;
-    }
+  /** @return The requested longitude. */
+  @JsonProperty(LONGITUDE)
+  public double getLongitude() {
+    return mLongitude;
+  }
 
-    /**
-     * The IANA timezone name for the requested location (e.g. <code>America/New_York</code>). This is the timezone used
-     * for text forecast summaries and for determining the exact start time of daily data points.
-     *
-     * @return The IANA timezone name for the requested location.
-     */
-    @JsonProperty("timezone")
-    public String getTimezone() {
-        return mTimezone;
-    }
+  @JsonProperty(LONGITUDE)
+  public void setLongitude(double pLongitude) {
+    mLongitude = pLongitude;
+  }
 
-    @JsonProperty("timezone")
-    public void setTimezone(String pTimezone) {
-        mTimezone = pTimezone;
-    }
+  /**
+   * The IANA timezone name for the requested location (e.g. {@code America/New_York}). This is the
+   * timezone used for text forecast summaries and for determining the exact start time of daily
+   * data points.
+   *
+   * @return The IANA timezone name for the requested location.
+   */
+  @JsonProperty("timezone")
+  public String getTimezone() {
+    return mTimezone;
+  }
 
-    @JsonProperty("offset")
-    public int getOffset() {
-        return mOffset;
-    }
+  @JsonProperty("timezone")
+  public void setTimezone(String pTimezone) {
+    mTimezone = pTimezone;
+  }
 
-    @JsonProperty("offset")
-    public void setOffset(int pOffset) {
-        mOffset = pOffset;
-    }
+  @JsonProperty("offset")
+  public int getOffset() {
+    return mOffset;
+  }
 
-    @JsonProperty("currently")
-    public HourlyDataPoint getCurrently() {
-        return mCurrently;
-    }
+  @JsonProperty("offset")
+  public void setOffset(int pOffset) {
+    mOffset = pOffset;
+  }
 
-    @JsonProperty("currently")
-    public void setCurrently(HourlyDataPoint pCurrently) {
-        mCurrently = pCurrently;
-    }
+  @JsonProperty("currently")
+  public HourlyDataPoint getCurrentHour() {
+    return mCurrently;
+  }
 
-    @JsonProperty("minutely")
-    public MinutelyDataBlock getMinutely() {
-        return mMinutely;
-    }
+  @JsonProperty("currently")
+  public void setCurrently(HourlyDataPoint pCurrently) {
+    mCurrently = pCurrently;
+  }
 
-    @JsonProperty("minutely")
-    public void setMinutely(MinutelyDataBlock pMinutely) {
-        mMinutely = pMinutely;
-    }
+  @JsonProperty("minutely")
+  public MinutelyDataBlock getMinutely() {
+    return mMinutely;
+  }
 
-    @JsonProperty("hourly")
-    public HourlyDataBlock getHourly() {
-        return mHourly;
-    }
+  @JsonProperty("minutely")
+  public void setMinutely(MinutelyDataBlock pMinutely) {
+    mMinutely = pMinutely;
+  }
 
-    @JsonProperty("hourly")
-    public void setHourly(HourlyDataBlock pHourly) {
-        mHourly = pHourly;
-    }
+  @JsonProperty("hourly")
+  public HourlyDataBlock getHourly() {
+    return mHourly;
+  }
 
-    @JsonProperty("daily")
-    public DailyDataBlock getDaily() {
-        return mDaily;
-    }
+  @JsonProperty("hourly")
+  public void setHourly(HourlyDataBlock pHourly) {
+    mHourly = pHourly;
+  }
 
-    @JsonProperty("daily")
-    public void setDaily(DailyDataBlock pDaily) {
-        mDaily = pDaily;
-    }
+  @JsonProperty("daily")
+  public DailyDataBlock getDaily() {
+    return mDaily;
+  }
 
-    // ===========================================================
-    // Methods for/from SuperClass/Interfaces
-    // ===========================================================
+  public DailyDataPoint getToday() {
+    return mDaily.getDataPoints()[0];
+  }
 
-    // ===========================================================
-    // Inner and Anonymous Classes
-    // ===========================================================
+  @JsonProperty("daily")
+  public void setDaily(DailyDataBlock pDaily) {
+    mDaily = pDaily;
+  }
+
+  // ===========================================================
+  // Methods for/from SuperClass/Interfaces
+  // ===========================================================
+
+  // ===========================================================
+  // Inner and Anonymous Classes
+  // ===========================================================
 
 }

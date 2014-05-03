@@ -1,8 +1,10 @@
 package de.chasmo.forecastio.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
+
+import java.util.Arrays;
 
 /**
  * @author Martin Seeler <developer@chasmo.de>
@@ -12,78 +14,90 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class DailyDataBlock {
 
-    // ===========================================================
-    // Constants
-    // ===========================================================
+  // ===========================================================
+  // Constants
+  // ===========================================================
 
-    // ===========================================================
-    // Members / Fields
-    // ===========================================================
+  public static final String SUMMARY_PROPERTY = "summary";
 
-    /** A human-readable text summary of the next days. */
-    private String mSummary;
+  private static final String ICON_PROPERTY = "icon";
 
-    /** The machine-readable text summary. */
-    private String mIcon;
+  private static final String DATA_PROPERTY = "data";
 
-    private DailyDataPoint[] mDataPoints;
+  // ===========================================================
+  // Members / Fields
+  // ===========================================================
 
-    // ===========================================================
-    // Constructors
-    // ===========================================================
+  /** A human-readable text summary of the next days. */
+  private String summary;
 
-    // ===========================================================
-    // Methods
-    // ===========================================================
+  /** The machine-readable text summary. */
+  private String icon;
 
-    // ===========================================================
-    // Getter & Setter
-    // ===========================================================
+  private DailyDataPoint[] dataPoints;
 
-    /** @return A human-readable text summary of the next days. */
-    @JsonProperty("summary")
-    public String getSummary() {
-        return mSummary;
-    }
+  // ===========================================================
+  // Constructors
+  // ===========================================================
 
-    @JsonProperty("summary")
-    public void setSummary(String pSummary) {
-        mSummary = pSummary;
-    }
+  // ===========================================================
+  // Methods
+  // ===========================================================
 
-    /**
-     * A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this
-     * property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy,
-     * partly-cloudy-day, or partly-cloudy-night.
-     *
-     * @return The machine-readable text summary.
-     */
-    @JsonProperty("icon")
-    public String getIcon() {
-        return mIcon;
-    }
+  // ===========================================================
+  // Getter & Setter
+  // ===========================================================
 
-    @JsonProperty("icon")
-    public void setIcon(String pIcon) {
-        mIcon = pIcon;
-    }
+  /** @return A human-readable text summary of the next days. */
+  @JsonProperty(SUMMARY_PROPERTY)
+  public String getSummary() {
+    return summary;
+  }
 
-    @JsonProperty("data")
-    public DailyDataPoint[] getDataPoints() {
-        return mDataPoints;
-    }
+  @JsonProperty(SUMMARY_PROPERTY)
+  public void setSummary(final String summary) {
+    this.summary = summary;
+  }
 
-    @JsonProperty("data")
-    public void setDataPoints(DailyDataPoint[] pDataPoints) {
-        mDataPoints = pDataPoints;
-    }
+  /**
+   * A machine-readable text summary of this data point, suitable for selecting an icon for display.
+   * If defined, this property will have one of the following values: clear-day, clear-night, rain,
+   * snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.
+   *
+   * @return The machine-readable text summary.
+   */
+  @JsonProperty(ICON_PROPERTY)
+  public String getIcon() {
+    return icon;
+  }
 
-    // ===========================================================
-    // Methods for/from SuperClass/Interfaces
-    // ===========================================================
+  @JsonProperty(ICON_PROPERTY)
+  public void setIcon(final String icon) {
+    this.icon = icon;
+  }
 
-    // ===========================================================
-    // Inner and Anonymous Classes
-    // ===========================================================
+  @JsonProperty(DATA_PROPERTY)
+  public DailyDataPoint[] getDataPoints() {
+    return dataPoints;
+  }
+
+  @JsonProperty(DATA_PROPERTY)
+  public void setDataPoints(final DailyDataPoint[] dataPoints) {
+    this.dataPoints = dataPoints;
+  }
+
+  // ===========================================================
+  // Methods for/from SuperClass/Interfaces
+  // ===========================================================
+
+  @Override
+  public String toString() {
+    return String.format("DailyDataBlock{summary='%s', icon='%s', dataPoints=%s}", summary, icon,
+        dataPoints == null ? "null" : Arrays.asList(dataPoints).toString());
+  }
+
+  // ===========================================================
+  // Inner and Anonymous Classes
+  // ===========================================================
 
 }

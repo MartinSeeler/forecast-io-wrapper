@@ -1,8 +1,8 @@
 package de.chasmo.forecastio.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonProperty;
 
 /**
  * @author Martin Seeler <developer@chasmo.de>
@@ -12,104 +12,114 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MinutelyDataPoint {
 
-    // ===========================================================
-    // Constants
-    // ===========================================================
+  // ===========================================================
+  // Constants
+  // ===========================================================
 
-    // ===========================================================
-    // Members / Fields
-    // ===========================================================
+  // ===========================================================
+  // Members / Fields
+  // ===========================================================
 
-    /** The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs. */
-    private long mTime;
+  /**
+   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point
+   * occurs.
+   */
+  private long mTime;
 
-    private double mPrecipIntensity;
+  private double mPrecipIntensity;
 
-    private double mPrecipProbability;
+  private double mPrecipProbability;
 
-    private double mPrecipIntensityError;
+  private double mPrecipIntensityError;
 
-    private String mPrecipType;
+  private String mPrecipType;
 
-    // ===========================================================
-    // Constructors
-    // ===========================================================
+  // ===========================================================
+  // Constructors
+  // ===========================================================
 
-    // ===========================================================
-    // Methods
-    // ===========================================================
+  // ===========================================================
+  // Methods
+  // ===========================================================
 
-    // ===========================================================
-    // Getter & Setter
-    // ===========================================================
+  // ===========================================================
+  // Getter & Setter
+  // ===========================================================
 
-    /** @return The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs. */
-    @JsonProperty("time")
-    public final long getTime() {
-        return mTime;
-    }
+  /**
+   * @return The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data
+   * point occurs.
+   */
+  @JsonProperty("time")
+  public final long getTime() {
+    return mTime;
+  }
 
-    /** @param pTime The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs. */
-    @JsonProperty("time")
-    public final void setTime(long pTime) {
-        mTime = pTime;
-    }
+  /**
+   * @param pTime The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this
+   *              data point occurs.
+   */
+  @JsonProperty("time")
+  public final void setTime(long pTime) {
+    mTime = pTime;
+  }
 
-    /**
-     * A numerical value representing the average expected intensity (in inches of liquid water per hour) of
-     * precipitation occurring at the given time conditional on probability (that is, assuming any precipitation occurs
-     * at all). A very rough guide is that a value of 0 in./hr. corresponds to no precipitation, 0.002 in./hr.
-     * corresponds to very light precipitation, 0.017 in./hr. corresponds to light precipitation, 0.1 in./hr.
-     * corresponds to moderate precipitation, and 0.4 in./hr. corresponds to heavy precipitation.
-     *
-     * @return The expected intensity of precipitation if available, <code>0.0d</code> otherwise.
-     */
-    @JsonProperty("precipIntensity")
-    public final double getPrecipIntensity() {
-        return mPrecipIntensity;
-    }
+  /**
+   * A numerical value representing the average expected intensity (in inches of liquid water per
+   * hour) of precipitation occurring at the given time conditional on probability (that is,
+   * assuming any precipitation occurs at all). A very rough guide is that a value of 0 in./hr.
+   * corresponds to no precipitation, 0.002 in./hr. corresponds to very light precipitation, 0.017
+   * in./hr. corresponds to light precipitation, 0.1 in./hr. corresponds to moderate precipitation,
+   * and 0.4 in./hr. corresponds to heavy precipitation.
+   *
+   * @return The expected intensity of precipitation if available, <code>0.0d</code> otherwise.
+   */
+  @JsonProperty("precipIntensity")
+  public final double getPrecipIntensity() {
+    return mPrecipIntensity;
+  }
 
-    @JsonProperty("precipIntensity")
-    public final void setPrecipIntensity(double pPrecipIntensity) {
-        mPrecipIntensity = pPrecipIntensity;
-    }
+  @JsonProperty("precipIntensity")
+  public final void setPrecipIntensity(double pPrecipIntensity) {
+    mPrecipIntensity = pPrecipIntensity;
+  }
 
-    @JsonProperty("precipProbability")
-    public double getPrecipProbability() {
-        return mPrecipProbability;
-    }
+  @JsonProperty("precipProbability")
+  public double getPrecipProbability() {
+    return mPrecipProbability;
+  }
 
-    @JsonProperty("precipProbability")
-    public void setPrecipProbability(double pPrecipProbability) {
-        mPrecipProbability = pPrecipProbability;
-    }
+  @JsonProperty("precipProbability")
+  public void setPrecipProbability(double pPrecipProbability) {
+    mPrecipProbability = pPrecipProbability;
+  }
 
-    @JsonProperty("precipIntensityError")
-    public double getPrecipIntensityError() {
-        return mPrecipIntensityError;
-    }
+  @JsonProperty("precipIntensityError")
+  public double getPrecipIntensityError() {
+    return mPrecipIntensityError;
+  }
 
-    @JsonProperty("precipIntensityError")
-    public void setPrecipIntensityError(double pPrecipIntensityError) {
-        mPrecipIntensityError = pPrecipIntensityError;
-    }
+  @JsonProperty("precipIntensityError")
+  public void setPrecipIntensityError(double pPrecipIntensityError) {
+    mPrecipIntensityError = pPrecipIntensityError;
+  }
 
-    @JsonProperty("precipType")
-    public String getPrecipType() {
-        return mPrecipType;
-    }
+  @JsonProperty("precipType")
+  public String getPrecipType() {
+    return mPrecipType;
+  }
 
-    @JsonProperty("precipType")
-    public void setPrecipType(String pPrecipType) {
-        mPrecipType = pPrecipType;
-    }
+  @JsonProperty("precipType")
+  public void setPrecipType(String pPrecipType) {
+    mPrecipType = pPrecipType;
+  }
 
-    // ===========================================================
-    // Methods for/from SuperClass/Interfaces
-    // ===========================================================
+  // ===========================================================
+  // Methods for/from SuperClass/Interfaces
+  // ===========================================================
 
-    // ===========================================================
-    // Inner and Anonymous Classes
-    // ===========================================================
+  // ===========================================================
+  // Inner and Anonymous Classes
+  // ===========================================================
 
 }
