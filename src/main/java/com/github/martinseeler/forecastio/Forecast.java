@@ -1,13 +1,13 @@
-package de.chasmo.forecastio;
+package com.github.martinseeler.forecastio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.martinseeler.forecastio.data.DailyDataBlock;
+import com.github.martinseeler.forecastio.data.DailyDataPoint;
+import com.github.martinseeler.forecastio.data.HourlyDataBlock;
+import com.github.martinseeler.forecastio.data.HourlyDataPoint;
+import com.github.martinseeler.forecastio.data.MinutelyDataBlock;
 import com.google.gag.annotation.remark.RTFM;
-import de.chasmo.forecastio.data.DailyDataBlock;
-import de.chasmo.forecastio.data.DailyDataPoint;
-import de.chasmo.forecastio.data.HourlyDataBlock;
-import de.chasmo.forecastio.data.HourlyDataPoint;
-import de.chasmo.forecastio.data.MinutelyDataBlock;
 
 /**
  * Representing the retrieved forecast from the API with all parsed fields.
@@ -17,13 +17,27 @@ import de.chasmo.forecastio.data.MinutelyDataBlock;
  */
 @RTFM("https://developer.forecast.io/docs/v2")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Forecast {
-
-  private static final String LONGITUDE = "longitude";
+public final class Forecast {
 
   // ===========================================================
   // Constants
   // ===========================================================
+
+  private static final String LONGITUDE = "longitude";
+
+  private static final String LATITUDE = "latitude";
+
+  private static final String TIMEZONE = "timezone";
+
+  private static final String OFFSET = "offset";
+
+  private static final String CURRENTLY = "currently";
+
+  private static final String MINUTELY = "minutely";
+
+  private static final String HOURLY = "hourly";
+
+  private static final String DAILY = "daily";
 
   // ===========================================================
   // Members / Fields
@@ -61,12 +75,12 @@ public class Forecast {
   // ===========================================================
 
   /** @return The requested latitude. */
-  @JsonProperty("latitude")
+  @JsonProperty(LATITUDE)
   public double getLatitude() {
     return mLatitude;
   }
 
-  @JsonProperty("latitude")
+  @JsonProperty(LATITUDE)
   public void setLatitude(double pLatitude) {
     mLatitude = pLatitude;
   }
@@ -83,63 +97,63 @@ public class Forecast {
   }
 
   /**
-   * The IANA timezone name for the requested location (e.g. {@code America/New_York}). This is the
-   * timezone used for text forecast summaries and for determining the exact start time of daily
-   * data points.
+   * The IANA timezone name for the requested location (e.g. {@code America/New_York}). This is the timezone used for
+   * text forecast summaries and for determining the exact start time of daily data points.
    *
    * @return The IANA timezone name for the requested location.
    */
-  @JsonProperty("timezone")
+  @JsonProperty(TIMEZONE)
   public String getTimezone() {
     return mTimezone;
   }
 
-  @JsonProperty("timezone")
+  @JsonProperty(TIMEZONE)
   public void setTimezone(String pTimezone) {
     mTimezone = pTimezone;
   }
 
-  @JsonProperty("offset")
+  /** @return The current timezone offset in hours from GMT. */
+  @JsonProperty(OFFSET)
   public int getOffset() {
     return mOffset;
   }
 
-  @JsonProperty("offset")
+  @JsonProperty(OFFSET)
   public void setOffset(int pOffset) {
     mOffset = pOffset;
   }
 
-  @JsonProperty("currently")
+  @JsonProperty(CURRENTLY)
   public HourlyDataPoint getCurrentHour() {
     return mCurrently;
   }
 
-  @JsonProperty("currently")
+  @JsonProperty(CURRENTLY)
   public void setCurrently(HourlyDataPoint pCurrently) {
     mCurrently = pCurrently;
   }
 
-  @JsonProperty("minutely")
+  @JsonProperty(MINUTELY)
   public MinutelyDataBlock getMinutely() {
     return mMinutely;
   }
 
-  @JsonProperty("minutely")
+  @JsonProperty(MINUTELY)
   public void setMinutely(MinutelyDataBlock pMinutely) {
     mMinutely = pMinutely;
   }
 
-  @JsonProperty("hourly")
+  @JsonProperty(HOURLY)
   public HourlyDataBlock getHourly() {
     return mHourly;
   }
 
-  @JsonProperty("hourly")
+  @JsonProperty(HOURLY)
   public void setHourly(HourlyDataBlock pHourly) {
     mHourly = pHourly;
   }
 
-  @JsonProperty("daily")
+  @JsonProperty(DAILY)
   public DailyDataBlock getDaily() {
     return mDaily;
   }
@@ -148,7 +162,7 @@ public class Forecast {
     return mDaily.getDataPoints()[0];
   }
 
-  @JsonProperty("daily")
+  @JsonProperty(DAILY)
   public void setDaily(DailyDataBlock pDaily) {
     mDaily = pDaily;
   }

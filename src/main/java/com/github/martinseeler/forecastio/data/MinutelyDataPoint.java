@@ -1,4 +1,4 @@
-package de.chasmo.forecastio.data;
+package com.github.martinseeler.forecastio.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

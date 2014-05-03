@@ -1,4 +1,4 @@
-package de.chasmo.forecastio;
+package com.github.martinseeler.forecastio;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;

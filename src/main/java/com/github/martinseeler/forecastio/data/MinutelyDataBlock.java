@@ -1,4 +1,4 @@
-package de.chasmo.forecastio.data;
+package com.github.martinseeler.forecastio.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,11 +6,11 @@ import com.google.gag.annotation.remark.RTFM;
 
 /**
  * @author Martin Seeler <developer@chasmo.de>
- * @since 23.11.13 - 00:34
+ * @since 23.11.13 - 00:04
  */
 @RTFM("https://developer.forecast.io/docs/v2")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class DailyDataPoint extends MinutelyDataPoint {
+public final class MinutelyDataBlock {
 
   // ===========================================================
   // Constants
@@ -20,11 +20,13 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   // Members / Fields
   // ===========================================================
 
-  /** UNIX time of sunrise at this day. */
-  private long sunriseTime;
+  /** A human-readable text summary of the next minutes. */
+  private String mSummary;
 
-  /** UNIX time of sunset at this day. */
-  private long mSunsetTime;
+  /** The machine-readable text summary. */
+  private String mIcon;
+
+  private MinutelyDataPoint[] mDataPoints;
 
   // ===========================================================
   // Constructors
@@ -38,40 +40,43 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   // Getter & Setter
   // ===========================================================
 
-  /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunrise on the given day.
-   * (If no sunrise will occur on the given day, then the field will be 0. This can occur during
-   * summer and winter in very high or low latitudes.)
-   *
-   * @return The UNIX time of sunrise if available, {@code 0} otherwise.
-   */
-  @JsonProperty("sunriseTime")
-  public long getSunriseTime() {
-    return sunriseTime;
+  /** @return A human-readable text summary of the next minutes. */
+  @JsonProperty(DailyDataBlock.SUMMARY_PROPERTY)
+  public String getSummary() {
+    return mSummary;
   }
 
-  @JsonProperty("sunriseTime")
-  public void setSunriseTime(final long sunriseTime) {
-    this.sunriseTime = sunriseTime;
+  @JsonProperty(DailyDataBlock.SUMMARY_PROPERTY)
+  public void setSummary(String pSummary) {
+    mSummary = pSummary;
   }
 
   /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunset on the given day.
-   * (If no sunset will occur on the given day, then the field will be 0. This can occur during
-   * summer and winter in very high or low latitudes.)
+   * A machine-readable text summary of this data point, suitable for selecting an icon for display.
+   * If defined, this property will have one of the following values: clear-day, clear-night, rain,
+   * snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.
    *
-   * @return The UNIX time of sunset if available, <code>0</code> otherwise.
+   * @return The machine-readable text summary.
    */
-  @JsonProperty("sunsetTime")
-  public long getSunsetTime() {
-    return mSunsetTime;
+  @JsonProperty("icon")
+  public String getIcon() {
+    return mIcon;
   }
 
-  @JsonProperty("sunsetTime")
-  public void setSunsetTime(long pSunsetTime) {
-    mSunsetTime = pSunsetTime;
+  @JsonProperty("icon")
+  public void setIcon(String pIcon) {
+    mIcon = pIcon;
   }
 
+  @JsonProperty("data")
+  public MinutelyDataPoint[] getDataPoints() {
+    return mDataPoints;
+  }
+
+  @JsonProperty("data")
+  public void setDataPoints(MinutelyDataPoint[] pDataPoints) {
+    mDataPoints = pDataPoints;
+  }
 
   // ===========================================================
   // Methods for/from SuperClass/Interfaces

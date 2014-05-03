@@ -1,4 +1,4 @@
-package de.chasmo.forecastio.data;
+package com.github.martinseeler.forecastio.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +10,7 @@ import com.google.gag.annotation.remark.RTFM;
  */
 @RTFM("https://developer.forecast.io/docs/v2")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class MinutelyDataBlock {
+public final class HourlyDataBlock {
 
   // ===========================================================
   // Constants
@@ -20,13 +20,13 @@ public final class MinutelyDataBlock {
   // Members / Fields
   // ===========================================================
 
-  /** A human-readable text summary of the next minutes. */
+  /** A human-readable text summary of the next hours. */
   private String mSummary;
 
   /** The machine-readable text summary. */
   private String mIcon;
 
-  private MinutelyDataPoint[] mDataPoints;
+  private HourlyDataPoint[] mDataPoints;
 
   // ===========================================================
   // Constructors
@@ -40,7 +40,7 @@ public final class MinutelyDataBlock {
   // Getter & Setter
   // ===========================================================
 
-  /** @return A human-readable text summary of the next minutes. */
+  /** @return A human-readable text summary of the next hours. */
   @JsonProperty(DailyDataBlock.SUMMARY_PROPERTY)
   public String getSummary() {
     return mSummary;
@@ -52,8 +52,10 @@ public final class MinutelyDataBlock {
   }
 
   /**
-   * A machine-readable text summary of this data point, suitable for selecting an icon for display.
-   * If defined, this property will have one of the following values: clear-day, clear-night, rain,
+   * A machine-readable text summary of this data point, suitable for selecting an icon for
+   * display.
+   * If defined, this property will have one of the following values: clear-day, clear-night,
+   * rain,
    * snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.
    *
    * @return The machine-readable text summary.
@@ -69,12 +71,12 @@ public final class MinutelyDataBlock {
   }
 
   @JsonProperty("data")
-  public MinutelyDataPoint[] getDataPoints() {
+  public HourlyDataPoint[] getDataPoints() {
     return mDataPoints;
   }
 
   @JsonProperty("data")
-  public void setDataPoints(MinutelyDataPoint[] pDataPoints) {
+  public void setDataPoints(HourlyDataPoint[] pDataPoints) {
     mDataPoints = pDataPoints;
   }
 
