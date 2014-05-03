@@ -44,23 +44,23 @@ public final class Forecast {
   // ===========================================================
 
   /** The requested latitude. */
-  private double mLatitude;
+  private double latitude;
 
   /** The requested longitude. */
-  private double mLongitude;
+  private double longitude;
 
   /** The IANA timezone name for the requested location. */
-  private String mTimezone;
+  private String timezone;
 
-  private int mOffset;
+  private int offset;
 
-  private HourlyDataPoint mCurrently;
+  private HourlyDataPoint hourlyDataPoint;
 
-  private MinutelyDataBlock mMinutely;
+  private MinutelyDataBlock minutelyDataBlock;
 
-  private HourlyDataBlock mHourly;
+  private HourlyDataBlock hourlyDataBlock;
 
-  private DailyDataBlock mDaily;
+  private DailyDataBlock dailyDataBlock;
 
   // ===========================================================
   // Constructors
@@ -77,23 +77,23 @@ public final class Forecast {
   /** @return The requested latitude. */
   @JsonProperty(LATITUDE)
   public double getLatitude() {
-    return mLatitude;
+    return latitude;
   }
 
   @JsonProperty(LATITUDE)
-  public void setLatitude(double pLatitude) {
-    mLatitude = pLatitude;
+  public void setLatitude(final double latitude) {
+    this.latitude = latitude;
   }
 
   /** @return The requested longitude. */
   @JsonProperty(LONGITUDE)
   public double getLongitude() {
-    return mLongitude;
+    return longitude;
   }
 
   @JsonProperty(LONGITUDE)
-  public void setLongitude(double pLongitude) {
-    mLongitude = pLongitude;
+  public void setLongitude(final double longitude) {
+    this.longitude = longitude;
   }
 
   /**
@@ -104,67 +104,71 @@ public final class Forecast {
    */
   @JsonProperty(TIMEZONE)
   public String getTimezone() {
-    return mTimezone;
+    return timezone;
   }
 
   @JsonProperty(TIMEZONE)
-  public void setTimezone(String pTimezone) {
-    mTimezone = pTimezone;
+  public void setTimezone(final String timezone) {
+    this.timezone = timezone;
   }
 
   /** @return The current timezone offset in hours from GMT. */
   @JsonProperty(OFFSET)
   public int getOffset() {
-    return mOffset;
+    return offset;
   }
 
   @JsonProperty(OFFSET)
-  public void setOffset(int pOffset) {
-    mOffset = pOffset;
+  public void setOffset(final int offset) {
+    this.offset = offset;
   }
 
   @JsonProperty(CURRENTLY)
   public HourlyDataPoint getCurrentHour() {
-    return mCurrently;
+    return hourlyDataPoint;
   }
 
   @JsonProperty(CURRENTLY)
-  public void setCurrently(HourlyDataPoint pCurrently) {
-    mCurrently = pCurrently;
+  public void setCurrently(final HourlyDataPoint hourlyDataPoint) {
+    this.hourlyDataPoint = hourlyDataPoint;
   }
 
   @JsonProperty(MINUTELY)
   public MinutelyDataBlock getMinutely() {
-    return mMinutely;
+    return minutelyDataBlock;
   }
 
   @JsonProperty(MINUTELY)
-  public void setMinutely(MinutelyDataBlock pMinutely) {
-    mMinutely = pMinutely;
+  public void setMinutely(final MinutelyDataBlock minutelyDataBlock) {
+    this.minutelyDataBlock = minutelyDataBlock;
   }
 
   @JsonProperty(HOURLY)
   public HourlyDataBlock getHourly() {
-    return mHourly;
+    return hourlyDataBlock;
   }
 
   @JsonProperty(HOURLY)
-  public void setHourly(HourlyDataBlock pHourly) {
-    mHourly = pHourly;
+  public void setHourly(final HourlyDataBlock hourlyDataBlock) {
+    this.hourlyDataBlock = hourlyDataBlock;
   }
 
   @JsonProperty(DAILY)
   public DailyDataBlock getDaily() {
-    return mDaily;
+    return dailyDataBlock;
   }
 
   public DailyDataPoint getToday() {
-    return mDaily.getDataPoints()[0];
+    if (dailyDataBlock != null && dailyDataBlock.getDataPoints() != null && dailyDataBlock.getDataPoints().length > 0) {
+      return dailyDataBlock.getDataPoints()[0];
+    } else {
+      return null;
+    }
   }
 
   @JsonProperty(DAILY)
-  public void setDaily(DailyDataBlock pDaily) {
-    mDaily = pDaily;
+  public void setDaily(final DailyDataBlock dailyDataBlock) {
+    this.dailyDataBlock = dailyDataBlock;
   }
 
   // ===========================================================
