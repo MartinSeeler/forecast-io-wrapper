@@ -159,8 +159,21 @@ public final class Forecast {
   }
 
   public DailyDataPoint getToday() {
-    if (dailyDataBlock != null && dailyDataBlock.getDataPoints() != null && dailyDataBlock.getDataPoints().length > 0) {
-      return dailyDataBlock.getDataPoints()[0];
+    return getDayBlockIn(0);
+  }
+
+  public DailyDataPoint getTomorrow() {
+    return getDayBlockIn(1);
+  }
+
+  public DailyDataPoint getTodayInOneWeek() {
+    return getDayBlockIn(7);
+  }
+
+  private final DailyDataPoint getDayBlockIn(final int daysInFuture) {
+    if (dailyDataBlock != null && dailyDataBlock.getDataPoints() != null
+        && dailyDataBlock.getDataPoints().length > daysInFuture) {
+      return dailyDataBlock.getDataPoints()[daysInFuture];
     } else {
       return null;
     }
