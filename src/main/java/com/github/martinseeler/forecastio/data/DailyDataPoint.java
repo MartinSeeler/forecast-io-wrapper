@@ -20,6 +20,14 @@ public final class DailyDataPoint extends MinutelyDataPoint {
 
   private static final String SUNRISE_TIME = "sunriseTime";
 
+  private static final String MOON_PHASE = "moonPhase";
+
+  private static final String PRECIP_INTENSITY_MAX = "precipIntensityMax";
+
+  private static final String PRECIP_ACCUMULATION = "precipAccumulation";
+
+  private static final String PRECIP_INTENSITY_MAX_TIME = "precipIntensityMaxTime";
+
   // ===========================================================
   // Members / Fields
   // ===========================================================
@@ -29,6 +37,15 @@ public final class DailyDataPoint extends MinutelyDataPoint {
 
   /** UNIX time of sunset at this day. */
   private long sunsetTime;
+
+  /** A value representing the current moon phase. */
+  private double moonPhase;
+
+  private double precipIntensityMax;
+
+  private double precipAccumulation;
+
+  private long precipIntensityMaxTime;
 
   // ===========================================================
   // Constructors
@@ -74,6 +91,66 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   @JsonProperty(SUNSET_TIME)
   public void setSunsetTime(final long sunsetTime) {
     this.sunsetTime = sunsetTime;
+  }
+
+  /**
+   * A number representing the fractional part of the lunation number of the given day. This can be thought of as the
+   * “percentage complete” of the current lunar month: a value of 0 represents a new moon, a value of 0.25 represents a
+   * first quarter moon, a value of 0.5 represents a full moon, and a value of 0.75 represents a last quarter moon. (The
+   * ranges in between these represent waxing crescent, waxing gibbous, waning gibbous, and waning crescent moons,
+   * respectively.)
+   *
+   * @return The current moon phase value.
+   */
+  @JsonProperty(MOON_PHASE)
+  public double getMoonPhase() {
+    return moonPhase;
+  }
+
+  @JsonProperty(MOON_PHASE)
+  public void setMoonPhase(final double moonPhase) {
+    this.moonPhase = moonPhase;
+  }
+
+  /**
+   * @return A numerical value representing the maximumum expected intensity of precipitation on the given day in inches
+   * of liquid water per hour.
+   */
+  @JsonProperty(PRECIP_INTENSITY_MAX)
+  public double getPrecipIntensityMax() {
+    return precipIntensityMax;
+  }
+
+  @JsonProperty(PRECIP_INTENSITY_MAX)
+  public void setPrecipIntensityMax(final double precipIntensityMax) {
+    this.precipIntensityMax = precipIntensityMax;
+  }
+
+  /**
+   * @return The UNIX time at which {@link DailyDataPoint#getPrecipIntensityMax} occurs.
+   */
+  @JsonProperty(PRECIP_INTENSITY_MAX_TIME)
+  public long getPrecipIntensityMaxTime() {
+    return precipIntensityMaxTime;
+  }
+
+  @JsonProperty(PRECIP_INTENSITY_MAX_TIME)
+  public void setPrecipIntensityMaxTime(final long precipIntensityMaxTime) {
+    this.precipIntensityMaxTime = precipIntensityMaxTime;
+  }
+
+  /**
+   * @return the amount of snowfall accumulation expected to occur on the given day. (If no accumulation is expected,
+   * this property will not be defined and is {@code 0}.
+   */
+  @JsonProperty(PRECIP_ACCUMULATION)
+  public double getPrecipAccumulation() {
+    return precipAccumulation;
+  }
+
+  @JsonProperty(PRECIP_ACCUMULATION)
+  public void setPrecipAccumulation(final double precipAccumulation) {
+    this.precipAccumulation = precipAccumulation;
   }
 
   // ===========================================================
