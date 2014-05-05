@@ -1,5 +1,6 @@
 package com.github.martinseeler.forecastio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.martinseeler.forecastio.data.DailyDataBlock;
@@ -158,19 +159,23 @@ public final class Forecast {
     return dailyDataBlock;
   }
 
+  @JsonIgnore
   public DailyDataPoint getToday() {
     return getDayBlockIn(0);
   }
 
+  @JsonIgnore
   public DailyDataPoint getTomorrow() {
     return getDayBlockIn(1);
   }
 
+  @JsonIgnore
   public DailyDataPoint getTodayInOneWeek() {
     return getDayBlockIn(7);
   }
 
-  private final DailyDataPoint getDayBlockIn(final int daysInFuture) {
+  @JsonIgnore
+  private DailyDataPoint getDayBlockIn(final int daysInFuture) {
     if (dailyDataBlock != null && dailyDataBlock.getDataPoints() != null
         && dailyDataBlock.getDataPoints().length > daysInFuture) {
       return dailyDataBlock.getDataPoints()[daysInFuture];

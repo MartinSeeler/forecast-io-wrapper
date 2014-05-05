@@ -102,7 +102,7 @@ public final class ForecastIO {
 
   @Override
   public String toString() {
-    return "ForecastIO{ apiKey='" + apiKey + " }";
+    return "ForecastIO{apiKey='" + apiKey + "}";
   }
 
   // ===========================================================
