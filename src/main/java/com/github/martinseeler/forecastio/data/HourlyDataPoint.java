@@ -27,7 +27,9 @@ public class HourlyDataPoint extends MinutelyDataPoint {
   private static final String WIND_SPEED = "windSpeed";
 
   private static final String WIND_BEARING = "windBearing";
-  
+
+  private static final String VISIBILITY = "visibility";
+
   // ===========================================================
   // Members / Fields
   // ===========================================================
@@ -55,6 +57,9 @@ public class HourlyDataPoint extends MinutelyDataPoint {
 
   /** The direction that the wind is coming from. */
   private int windBearing;
+
+  /** The average visibility capped at 10 miles. */
+  private double visibility;
 
   // ===========================================================
   // Constructors
@@ -190,6 +195,17 @@ public class HourlyDataPoint extends MinutelyDataPoint {
     this.windBearing = windBearing;
   }
 
+  /** @return A numerical value representing the average visibility in miles, capped at 10 miles. */
+  @JsonProperty(VISIBILITY)
+  public double getVisibility() {
+    return visibility;
+  }
+
+  @JsonProperty(VISIBILITY)
+  public void setVisibility(final double visibility) {
+    this.visibility = visibility;
+  }
+
   // ===========================================================
   // Methods for/from SuperClass/Interfaces
   // ===========================================================
@@ -198,8 +214,8 @@ public class HourlyDataPoint extends MinutelyDataPoint {
   public String toString() {
     return String.format(
         "HourlyDataPoint{summary='%s', icon='%s', temperature=%s, apparentTemperature=%s, dewPoint=%s, "
-            + "humidity=%s, windSpeed=%s, windBearing=%d}", summary, icon, temperature, apparentTemperature, dewPoint,
-        humidity, windSpeed, windBearing
+            + "humidity=%s, windSpeed=%s, windBearing=%d, visibility=%s", summary, icon, temperature,
+        apparentTemperature, dewPoint, humidity, windSpeed, windBearing, visibility
     );
   }
 
