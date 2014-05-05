@@ -3,6 +3,7 @@ package com.github.martinseeler.forecastio.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author Martin Seeler <developer@chasmo.de>
@@ -133,6 +134,7 @@ public class MinutelyDataPoint {
    * then this property will not be defined.
    */
   @JsonProperty(PRECIP_TYPE)
+  @Nullable
   public final String getPrecipType() {
     return precipType;
   }
