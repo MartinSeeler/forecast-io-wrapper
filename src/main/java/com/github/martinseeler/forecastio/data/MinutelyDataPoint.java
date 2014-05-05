@@ -18,6 +18,12 @@ public class MinutelyDataPoint {
 
   private static final String TIME = "time";
 
+  private static final String CLOUD_COVER = "cloudCover";
+
+  private static final String PRESSURE = "pressure";
+
+  private static final String OZONE = "ozone";
+
   private static final String PRECIP_INTENSITY = "precipIntensity";
 
   private static final String PRECIP_PROBABILITY = "precipProbability";
@@ -42,6 +48,12 @@ public class MinutelyDataPoint {
   private double precipIntensityError;
 
   private String precipType;
+
+  private double cloudCover;
+
+  private double pressure;
+
+  private double ozone;
 
   // ===========================================================
   // Constructors
@@ -128,6 +140,48 @@ public class MinutelyDataPoint {
   @JsonProperty(PRECIP_TYPE)
   public final void setPrecipType(final String precipType) {
     this.precipType = precipType;
+  }
+
+  /**
+   * @return A numerical value between 0 and 1 (inclusive) representing the percentage of sky occluded by clouds. A
+   * value of 0 corresponds to clear sky, 0.4 to scattered clouds, 0.75 to broken cloud cover, and 1 to completely
+   * overcast skies.
+   */
+  @JsonProperty(CLOUD_COVER)
+  public final double getCloudCover() {
+    return cloudCover;
+  }
+
+  @JsonProperty(CLOUD_COVER)
+  public final void setCloudCover(final double cloudCover) {
+    this.cloudCover = cloudCover;
+  }
+
+  /**
+   * @return A numerical value representing the sea-level air pressure in millibars.
+   */
+  @JsonProperty(PRESSURE)
+  public double getPressure() {
+    return pressure;
+  }
+
+  @JsonProperty(PRESSURE)
+  public void setPressure(final double pressure) {
+    this.pressure = pressure;
+  }
+
+  /**
+   * @return A numerical value representing the columnar density of total atmospheric ozone at the given time in Dobson
+   * units.
+   */
+  @JsonProperty(OZONE)
+  public double getOzone() {
+    return ozone;
+  }
+
+  @JsonProperty(OZONE)
+  public void setOzone(final double ozone) {
+    this.ozone = ozone;
   }
 
   // ===========================================================
