@@ -48,7 +48,7 @@ public final class CurrentDataPointTest {
   }
 
   @Test
-  public void testJSONequal() throws Exception {
+  public void testJsonEquality() throws Exception {
     // GIVEN
     final ObjectMapper mapper = new ObjectMapper();
     final String sampleData = Resources.toString(Resources.getResource("sample4.json"), Charsets.UTF_8);
