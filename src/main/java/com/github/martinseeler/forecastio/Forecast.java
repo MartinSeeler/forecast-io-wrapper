@@ -3,10 +3,10 @@ package com.github.martinseeler.forecastio;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.martinseeler.forecastio.data.CurrentDataPoint;
 import com.github.martinseeler.forecastio.data.DailyDataBlock;
 import com.github.martinseeler.forecastio.data.DailyDataPoint;
 import com.github.martinseeler.forecastio.data.HourlyDataBlock;
-import com.github.martinseeler.forecastio.data.HourlyDataPoint;
 import com.github.martinseeler.forecastio.data.MinutelyDataBlock;
 import com.google.gag.annotation.remark.RTFM;
 
@@ -55,7 +55,7 @@ public final class Forecast {
 
   private int offset;
 
-  private HourlyDataPoint hourlyDataPoint;
+  private CurrentDataPoint currentDataPoint;
 
   private MinutelyDataBlock minutelyDataBlock;
 
@@ -125,13 +125,13 @@ public final class Forecast {
   }
 
   @JsonProperty(CURRENTLY)
-  public HourlyDataPoint getCurrentHour() {
-    return hourlyDataPoint;
+  public CurrentDataPoint getCurrently() {
+    return currentDataPoint;
   }
 
   @JsonProperty(CURRENTLY)
-  public void setCurrently(final HourlyDataPoint hourlyDataPoint) {
-    this.hourlyDataPoint = hourlyDataPoint;
+  public void setCurrently(final CurrentDataPoint currentDataPoint) {
+    this.currentDataPoint = currentDataPoint;
   }
 
   @JsonProperty(MINUTELY)
@@ -177,7 +177,7 @@ public final class Forecast {
   @JsonIgnore
   private DailyDataPoint getDayBlockIn(final int daysInFuture) {
     if (dailyDataBlock != null && dailyDataBlock.getDataPoints() != null
-        && dailyDataBlock.getDataPoints().length > daysInFuture) {
+        && dailyDataBlock.getDataPoints().length > daysInFuture && daysInFuture >= 0) {
       return dailyDataBlock.getDataPoints()[daysInFuture];
     } else {
       return null;
