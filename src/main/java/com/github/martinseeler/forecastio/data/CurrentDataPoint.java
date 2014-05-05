@@ -76,8 +76,8 @@ public final class CurrentDataPoint extends HourlyDataPoint {
 
   @Override
   public String toString() {
-    return String.format("CurrentDataPoint{nearestStormDistance=%s, nearestStormBearing=%s}", nearestStormDistance,
-        nearestStormBearing);
+    return String.format("CurrentDataPoint{nearestStormDistance=%s, nearestStormBearing=%s} %s", nearestStormDistance,
+        nearestStormBearing, super.toString());
   }
 
   // ===========================================================
