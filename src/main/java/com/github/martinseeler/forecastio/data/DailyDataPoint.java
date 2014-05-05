@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
 
+import java.util.Date;
+
 /**
  * @author Martin Seeler <developer@chasmo.de>
  * @since 23.11.13 - 00:34
@@ -47,6 +49,8 @@ public final class DailyDataPoint extends MinutelyDataPoint {
 
   private long precipIntensityMaxTime;
 
+  private double cloudCover;
+
   // ===========================================================
   // Constructors
   // ===========================================================
@@ -67,13 +71,20 @@ public final class DailyDataPoint extends MinutelyDataPoint {
    * @return The UNIX time of sunrise if available, {@code 0} otherwise.
    */
   @JsonProperty(SUNRISE_TIME)
-  public long getSunriseTime() {
+  public long getSunriseTimestamp() {
     return sunriseTime;
   }
 
   @JsonProperty(SUNRISE_TIME)
-  public void setSunriseTime(final long sunriseTime) {
+  public void setSunriseTimestamp(final long sunriseTime) {
     this.sunriseTime = sunriseTime;
+  }
+
+  /**
+   * @return A {@link java.util.Date}, where the {@link #getSunriseTime()} is multiplied by 1.000 for milliseconds.
+   */
+  public Date getSunriseTime() {
+    return new Date(1000L * sunriseTime);
   }
 
   /**
@@ -84,13 +95,20 @@ public final class DailyDataPoint extends MinutelyDataPoint {
    * @return The UNIX time of sunset if available, {@code 0} otherwise.
    */
   @JsonProperty(SUNSET_TIME)
-  public long getSunsetTime() {
+  public long getSunsetTimestamp() {
     return sunsetTime;
   }
 
   @JsonProperty(SUNSET_TIME)
-  public void setSunsetTime(final long sunsetTime) {
+  public void setSunsetTimestamp(final long sunsetTime) {
     this.sunsetTime = sunsetTime;
+  }
+
+  /**
+   * @return A {@link java.util.Date}, where the {@link #getSunsetTime()} is multiplied by 1.000 for milliseconds.
+   */
+  public Date getSunsetTime() {
+    return new Date(1000L * sunsetTime);
   }
 
   /**

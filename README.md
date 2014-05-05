@@ -25,13 +25,13 @@ final double latitude = 51.0504d;
 final double longitude = 13.7373d;
 
 // retrieve the current forecast
-final Forecast forecast = forecastIO.getForecast(latitude, longitude);
+final Forecast forecast = forecastIO.getForecastFor(latitude, longitude);
 
 System.out.println("Current temperature is " + forecast.getCurrently().getTemperature());
 System.out.println("Apparent temperature is " + forecast.getCurrently().getApparentTemperature());
 ```
 
-Get sunrise and sunset time for the specified timezone:
+Get sunrise and sunset time for the requested timezone:
 ```java
 // specify your API key
 final String apiKey = "replace-with-your-key";
@@ -42,18 +42,24 @@ final double latitude = 40.7142d;
 final double longitude = -74.0064d;
 
 // retrieve the current forecast
-final Forecast forecast = forecastIO.getForecast(latitude, longitude);
+final Forecast forecast = forecastIO.getForecastFor(latitude, longitude);
 
-// get current day block
-final DailyDataPoint today = forecast.getDaily().getDataPoints()[0];
+// get the forecast for today
+final DailyDataPoint today = forecast.getToday();
+// or forecast.getTomorrow();
+// or forecast.getTodayInOneWeek();
 
-// java is expecting milliseconds, so we have to multiply the timestamp with 1.000
-final Date sunriseDate = new Date(today.getSunriseTime() * 1000L);
-final Date sunsetDate = new Date(today.getSunsetTime() * 1000L);
+// get the datetime for sunrise and sunset
+final Date sunriseDate = today.getSunriseTime();
+final Date sunsetDate = today.getSunriseTime();
 
-// prepare time format
-final SimpleDateFormat isoFormat = new SimpleDateFormat("HH:mm:ss");
+// prepare time format with the correct timezone from the requested location
+final SimpleDateFormat isoFormat = new SimpleDateFormat("HH:mm:ss", Locale.US);
 isoFormat.setTimeZone(TimeZone.getTimeZone(forecast.getTimezone()));
+
+// do wathever you want ;-)
+System.out.println("Sunrise today was at " + isoFormat.format(sunriseDate));
+System.out.println("Sunset today will be at " + isoFormat.format(sunsetDate));
 
 System.out.println("Sunrise today was at " + isoFormat.format(sunriseDate));
 System.out.println("Sunset today will be at " + isoFormat.format(sunsetDate));
