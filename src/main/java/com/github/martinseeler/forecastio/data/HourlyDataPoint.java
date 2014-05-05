@@ -10,7 +10,7 @@ import com.google.gag.annotation.remark.RTFM;
  */
 @RTFM("https://developer.forecast.io/docs/v2")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public final class HourlyDataPoint extends MinutelyDataPoint {
+public class HourlyDataPoint extends MinutelyDataPoint {
 
   // ===========================================================
   // Constants
