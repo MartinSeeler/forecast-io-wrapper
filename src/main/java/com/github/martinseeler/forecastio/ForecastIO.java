@@ -8,6 +8,7 @@ import com.google.gag.annotation.remark.Magic;
 import com.google.gag.annotation.remark.RTFM;
 import com.google.gag.annotation.team.Visionary;
 import com.google.gag.enumeration.MagicType;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,7 @@ import java.net.URL;
 /**
  * Wrapper class to execute the API requests and retrieve data.
  *
- * @author Martin Seeler <developer@chasmo.de>
+ * @author Martin Seeler
  * @since 22.11.13 - 22:01
  */
 @Visionary("chasmo")
@@ -74,18 +75,19 @@ public final class ForecastIO {
   @Magic(type = MagicType.WHITE)
   public Forecast getForecastFor(final double latitude, final double longitude) {
     try {
-      final URL url = new URL(BASE_DOMAIN + '/' + apiKey + '/' + latitude + ',' + longitude + "?units=si");
+      final URL url =
+          new URL(BASE_DOMAIN + '/' + apiKey + '/' + latitude + ',' + longitude + "?units=si");
       final InputStream responseStream = url.openStream();
       final ObjectMapper mapper = new ObjectMapper();
       return mapper.readValue(responseStream, Forecast.class);
-    } catch (final MalformedURLException e) {
+    } catch (@NotNull final MalformedURLException e) {
       LOGGER.warn("There was an error building the URL for this request!", e);
       System.err.println("There was an error building the URL for this request!");
-    } catch (final JsonParseException | JsonMappingException e) {
+    } catch (@NotNull final JsonParseException | JsonMappingException e) {
       LOGGER.warn("There was an error while parsing the data from JSON!", e);
       System.err.println("There was an error while parsing the data from JSON!");
       e.printStackTrace();
-    } catch (final IOException e) {
+    } catch (@NotNull final IOException e) {
       LOGGER.warn("There was an error while reading the data!", e);
       System.err.println("There was an error while reading the data!");
     }
@@ -100,6 +102,7 @@ public final class ForecastIO {
   // Methods for/from SuperClass/Interfaces
   // ===========================================================
 
+  @NotNull
   @Override
   public String toString() {
     return "ForecastIO{apiKey='" + apiKey + "}";

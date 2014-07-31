@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
 
 /**
- * @author Martin Seeler <developer@chasmo.de>
+ * @author Martin Seeler
  * @since 05.05.2014 - 18:17
  */
 @RTFM("https://developer.forecast.io/docs/v2")
@@ -41,9 +41,10 @@ public final class CurrentDataPoint extends HourlyDataPoint {
   // ===========================================================
 
   /**
-   * @return A numerical value representing the distance to the nearest storm in miles. (This value is very approximate
-   * and should not be used in scenarios requiring accurate results. In particular, a storm distance of zero doesn’t
-   * necessarily refer to a storm at the requested location, but rather a storm in the vicinity of that location.)
+   * @return A numerical value representing the distance to the nearest storm in miles. (This value
+   * is very approximate and should not be used in scenarios requiring accurate results. In
+   * particular, a storm distance of zero doesn’t necessarily refer to a storm at the requested
+   * location, but rather a storm in the vicinity of that location.)
    */
   @JsonProperty(NEAREST_STORM_DISTANCE)
   public double getNearestStormDistance() {
@@ -56,9 +57,10 @@ public final class CurrentDataPoint extends HourlyDataPoint {
   }
 
   /**
-   * @return A numerical value representing the direction of the nearest storm in degrees, with true north at 0° and
-   * progressing clockwise. (If {@link #getNearestStormDistance()} is zero, then this value will not be defined. The
-   * caveats that apply to {@link #getNearestStormDistance()} also apply to this value.)
+   * @return A numerical value representing the direction of the nearest storm in degrees, with true
+   * north at 0° and progressing clockwise. (If {@link #getNearestStormDistance()} is zero, then
+   * this value will not be defined. The caveats that apply to {@link #getNearestStormDistance()}
+   * also apply to this value.)
    */
   @JsonProperty(NEAREST_STORM_BEARING)
   public double getNearestStormBearing() {
@@ -76,8 +78,8 @@ public final class CurrentDataPoint extends HourlyDataPoint {
 
   @Override
   public String toString() {
-    return String.format("CurrentDataPoint{nearestStormDistance=%s, nearestStormBearing=%s} %s", nearestStormDistance,
-        nearestStormBearing, super.toString());
+    return String.format("CurrentDataPoint{nearestStormDistance=%s, nearestStormBearing=%s} %s",
+        nearestStormDistance, nearestStormBearing, super.toString());
   }
 
   // ===========================================================

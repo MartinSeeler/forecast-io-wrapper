@@ -6,14 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.martinseeler.forecastio.data.CurrentDataPoint;
 import com.github.martinseeler.forecastio.data.DailyDataBlock;
 import com.github.martinseeler.forecastio.data.DailyDataPoint;
+import com.github.martinseeler.forecastio.data.ForecastFlags;
 import com.github.martinseeler.forecastio.data.HourlyDataBlock;
 import com.github.martinseeler.forecastio.data.MinutelyDataBlock;
 import com.google.gag.annotation.remark.RTFM;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Representing the retrieved forecast from the API with all parsed fields.
  *
- * @author Martin Seeler <developer@chasmo.de>
+ * @author Martin Seeler
  * @since 22.11.13 - 23:25
  */
 @RTFM("https://developer.forecast.io/docs/v2")
@@ -40,6 +42,8 @@ public final class Forecast {
 
   private static final String DAILY = "daily";
 
+  private static final String FLAGS = "flags";
+
   // ===========================================================
   // Members / Fields
   // ===========================================================
@@ -62,6 +66,8 @@ public final class Forecast {
   private HourlyDataBlock hourlyDataBlock;
 
   private DailyDataBlock dailyDataBlock;
+
+  private ForecastFlags flags;
 
   // ===========================================================
   // Constructors
@@ -98,8 +104,9 @@ public final class Forecast {
   }
 
   /**
-   * The IANA timezone name for the requested location (e.g. {@code America/New_York}). This is the timezone used for
-   * text forecast summaries and for determining the exact start time of daily data points.
+   * The IANA timezone name for the requested location (e.g. {@code America/New_York}). This is the
+   * timezone used for text forecast summaries and for determining the exact start time of daily
+   * data points.
    *
    * @return The IANA timezone name for the requested location.
    */
@@ -159,21 +166,25 @@ public final class Forecast {
     return dailyDataBlock;
   }
 
+  @Nullable
   @JsonIgnore
   public DailyDataPoint getToday() {
     return getDayBlockIn(0);
   }
 
+  @Nullable
   @JsonIgnore
   public DailyDataPoint getTomorrow() {
     return getDayBlockIn(1);
   }
 
+  @Nullable
   @JsonIgnore
   public DailyDataPoint getTodayInOneWeek() {
     return getDayBlockIn(7);
   }
 
+  @Nullable
   @JsonIgnore
   private DailyDataPoint getDayBlockIn(final int daysInFuture) {
     if (dailyDataBlock != null && dailyDataBlock.getDataPoints() != null
@@ -187,6 +198,16 @@ public final class Forecast {
   @JsonProperty(DAILY)
   public void setDaily(final DailyDataBlock dailyDataBlock) {
     this.dailyDataBlock = dailyDataBlock;
+  }
+
+  @JsonProperty(FLAGS)
+  public ForecastFlags getFlags() {
+    return flags;
+  }
+
+  @JsonProperty(FLAGS)
+  public void setFlags(final ForecastFlags flags) {
+    this.flags = flags;
   }
 
   // ===========================================================

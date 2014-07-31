@@ -3,11 +3,12 @@ package com.github.martinseeler.forecastio.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 
 /**
- * @author Martin Seeler <developer@chasmo.de>
+ * @author Martin Seeler
  * @since 23.11.13 - 00:34
  */
 @RTFM("https://developer.forecast.io/docs/v2")
@@ -64,9 +65,9 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   // ===========================================================
 
   /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunrise on the given day. (If no sunrise will
-   * occur on the given day, then the field will be 0. This can occur during summer and winter in very high or low
-   * latitudes.)
+   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunrise on the given day.
+   * (If no sunrise will occur on the given day, then the field will be 0. This can occur during
+   * summer and winter in very high or low latitudes.)
    *
    * @return The UNIX time of sunrise if available, {@code 0} otherwise.
    */
@@ -81,16 +82,18 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * @return A {@link java.util.Date}, where the {@link #getSunriseTime()} is multiplied by 1.000 for milliseconds.
+   * @return A {@link java.util.Date}, where the {@link #getSunriseTime()} is multiplied by 1.000
+   * for milliseconds.
    */
+  @NotNull
   public Date getSunriseTime() {
     return new Date(1000L * sunriseTime);
   }
 
   /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunset on the given day. (If no sunset will
-   * occur on the given day, then the field will be 0. This can occur during summer and winter in very high or low
-   * latitudes.)
+   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunset on the given day.
+   * (If no sunset will occur on the given day, then the field will be 0. This can occur during
+   * summer and winter in very high or low latitudes.)
    *
    * @return The UNIX time of sunset if available, {@code 0} otherwise.
    */
@@ -105,17 +108,20 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * @return A {@link java.util.Date}, where the {@link #getSunsetTime()} is multiplied by 1.000 for milliseconds.
+   * @return A {@link java.util.Date}, where the {@link #getSunsetTime()} is multiplied by 1.000 for
+   * milliseconds.
    */
+  @NotNull
   public Date getSunsetTime() {
     return new Date(1000L * sunsetTime);
   }
 
   /**
-   * A number representing the fractional part of the lunation number of the given day. This can be thought of as the
-   * “percentage complete” of the current lunar month: a value of 0 represents a new moon, a value of 0.25 represents a
-   * first quarter moon, a value of 0.5 represents a full moon, and a value of 0.75 represents a last quarter moon. (The
-   * ranges in between these represent waxing crescent, waxing gibbous, waning gibbous, and waning crescent moons,
+   * A number representing the fractional part of the lunation number of the given day. This can be
+   * thought of as the “percentage complete” of the current lunar month: a value of 0 represents a
+   * new moon, a value of 0.25 represents a first quarter moon, a value of 0.5 represents a full
+   * moon, and a value of 0.75 represents a last quarter moon. (The ranges in between these
+   * represent waxing crescent, waxing gibbous, waning gibbous, and waning crescent moons,
    * respectively.)
    *
    * @return The current moon phase value.
@@ -131,8 +137,8 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * @return A numerical value representing the maximumum expected intensity of precipitation on the given day in inches
-   * of liquid water per hour.
+   * @return A numerical value representing the maximumum expected intensity of precipitation on the
+   * given day in inches of liquid water per hour.
    */
   @JsonProperty(PRECIP_INTENSITY_MAX)
   public double getPrecipIntensityMax() {
@@ -158,8 +164,8 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * @return the amount of snowfall accumulation expected to occur on the given day. (If no accumulation is expected,
-   * this property will not be defined and is {@code 0}.
+   * @return the amount of snowfall accumulation expected to occur on the given day. (If no
+   * accumulation is expected, this property will not be defined and is {@code 0}.
    */
   @JsonProperty(PRECIP_ACCUMULATION)
   public double getPrecipAccumulation() {

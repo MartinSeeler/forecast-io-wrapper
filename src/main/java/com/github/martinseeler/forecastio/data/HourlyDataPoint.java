@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
 
 /**
- * @author Martin Seeler <developer@chasmo.de>
+ * @author Martin Seeler
  * @since 23.11.13 - 00:24
  */
 @RTFM("https://developer.forecast.io/docs/v2")
@@ -85,9 +85,9 @@ public class HourlyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * A machine-readable text summary of this data point, suitable for selecting an icon for display. If defined, this
-   * property will have one of the following values: clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy,
-   * partly-cloudy-day, or partly-cloudy-night.
+   * A machine-readable text summary of this data point, suitable for selecting an icon for display.
+   * If defined, this property will have one of the following values: clear-day, clear-night, rain,
+   * snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.
    *
    * @return The machine-readable text summary.
    */
@@ -102,8 +102,8 @@ public class HourlyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * A numerical value representing the temperature at the given time (in degrees Fahrenheit, if not specified through
-   * the units parameter).
+   * A numerical value representing the temperature at the given time (in degrees Fahrenheit, if not
+   * specified through the units parameter).
    *
    * @return The temperature at this hour if available, {@code 0} otherwise.
    */
@@ -118,8 +118,8 @@ public class HourlyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * A numerical value representing the apparent (or “feels like”) temperature at the given time (in degrees Fahrenheit,
-   * if not specified through the units parameter).
+   * A numerical value representing the apparent (or “feels like”) temperature at the given time (in
+   * degrees Fahrenheit, if not specified through the units parameter).
    *
    * @return The apparent temperature at this hour if available, {@code 0} otherwise.
    */
@@ -134,8 +134,8 @@ public class HourlyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * A numerical value representing the dew point at the given time (in degrees Fahrenheit, if not specified through the
-   * units parameter).
+   * A numerical value representing the dew point at the given time (in degrees Fahrenheit, if not
+   * specified through the units parameter).
    *
    * @return The dew point if available, {@code 0} otherwise.
    */
@@ -165,7 +165,8 @@ public class HourlyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * A numerical value representing the wind speed (in miles per hour, if not specified through the units parameter).
+   * A numerical value representing the wind speed (in miles per hour, if not specified through the
+   * units parameter).
    *
    * @return The wind speed if available, {@code 0} otherwise.
    */
@@ -180,8 +181,8 @@ public class HourlyDataPoint extends MinutelyDataPoint {
   }
 
   /**
-   * A numerical value representing the direction that the wind is coming from in degrees, with true north at 0° and
-   * progressing clockwise. (If windSpeed is zero, then this value will be 0, too.)
+   * A numerical value representing the direction that the wind is coming from in degrees, with true
+   * north at 0° and progressing clockwise. (If windSpeed is zero, then this value will be 0, too.)
    *
    * @return The direction that the wind is coming from if available, {@code 0} otherwise.
    */
@@ -213,10 +214,10 @@ public class HourlyDataPoint extends MinutelyDataPoint {
   @Override
   public String toString() {
     return String.format(
-        "HourlyDataPoint{summary='%s', icon='%s', temperature=%s, apparentTemperature=%s, dewPoint=%s, "
-            + "humidity=%s, windSpeed=%s, windBearing=%d, visibility=%s", summary, icon, temperature,
-        apparentTemperature, dewPoint, humidity, windSpeed, windBearing, visibility
-    );
+        "HourlyDataPoint{summary='%s', icon='%s', temperature=%s, apparentTemperature=%s, " +
+            "dewPoint=%s, "
+            + "humidity=%s, windSpeed=%s, windBearing=%d, visibility=%s", summary, icon,
+        temperature, apparentTemperature, dewPoint, humidity, windSpeed, windBearing, visibility);
   }
 
   // ===========================================================

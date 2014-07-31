@@ -112,7 +112,8 @@ public class MinutelyDataPointTest {
   public void testJsonEquality() throws Exception {
     // GIVEN
     final ObjectMapper mapper = new ObjectMapper();
-    final String sampleData = Resources.toString(Resources.getResource("sample4.json"), Charsets.UTF_8);
+    final String sampleData =
+        Resources.toString(Resources.getResource("sample4.json"), Charsets.UTF_8);
     final JsonNode sampleNode = mapper.readTree(sampleData).get("minutely").get("data").get(0);
     // WHEN
     final String ourData = mapper.writeValueAsString(FIXTURE);

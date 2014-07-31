@@ -6,7 +6,7 @@ import com.google.gag.annotation.remark.RTFM;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * @author Martin Seeler <developer@chasmo.de>
+ * @author Martin Seeler
  * @since 23.11.13 - 00:05
  */
 @RTFM("https://developer.forecast.io/docs/v2")
@@ -38,7 +38,8 @@ public class MinutelyDataPoint {
   // ===========================================================
 
   /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs.
+   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point
+   * occurs.
    */
   private long time;
 
@@ -69,7 +70,8 @@ public class MinutelyDataPoint {
   // ===========================================================
 
   /**
-   * @return The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs.
+   * @return The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data
+   * point occurs.
    */
   @JsonProperty(TIME)
   public final long getTime() {
@@ -77,7 +79,8 @@ public class MinutelyDataPoint {
   }
 
   /**
-   * @param time The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this data point occurs.
+   * @param time The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) at which this
+   *             data point occurs.
    */
   @JsonProperty(TIME)
   public final void setTime(final long time) {
@@ -85,10 +88,11 @@ public class MinutelyDataPoint {
   }
 
   /**
-   * A numerical value representing the average expected intensity (in inches of liquid water per hour) of precipitation
-   * occurring at the given time conditional on probability (that is, assuming any precipitation occurs at all). A very
-   * rough guide is that a value of 0 in./hr. corresponds to no precipitation, 0.002 in./hr. corresponds to very light
-   * precipitation, 0.017 in./hr. corresponds to light precipitation, 0.1 in./hr. corresponds to moderate precipitation,
+   * A numerical value representing the average expected intensity (in inches of liquid water per
+   * hour) of precipitation occurring at the given time conditional on probability (that is,
+   * assuming any precipitation occurs at all). A very rough guide is that a value of 0 in./hr.
+   * corresponds to no precipitation, 0.002 in./hr. corresponds to very light precipitation, 0.017
+   * in./hr. corresponds to light precipitation, 0.1 in./hr. corresponds to moderate precipitation,
    * and 0.4 in./hr. corresponds to heavy precipitation.
    *
    * @return The expected intensity of precipitation if available, {@code 0.0d} otherwise.
@@ -104,8 +108,8 @@ public class MinutelyDataPoint {
   }
 
   /**
-   * @return A numerical value between 0 and 1 (inclusive) representing the probability of precipitation occuring at the
-   * given time.
+   * @return A numerical value between 0 and 1 (inclusive) representing the probability of
+   * precipitation occuring at the given time.
    */
   @JsonProperty(PRECIP_PROBABILITY)
   public final double getPrecipProbability() {
@@ -128,10 +132,11 @@ public class MinutelyDataPoint {
   }
 
   /**
-   * @return A string representing the type of precipitation occurring at the given time. If defined, this property will
-   * have one of the following values: {@code rain}, {@code snow}, {@code sleet} (which applies to each of freezing
-   * rain, ice pellets, and “wintery mix”), or {@code hail}. (If {@link MinutelyDataPoint#getPrecipIntensity()} is zero,
-   * then this property will not be defined.
+   * @return A string representing the type of precipitation occurring at the given time. If
+   * defined, this property will have one of the following values: {@code rain}, {@code snow},
+   * {@code sleet} (which applies to each of freezing rain, ice pellets, and “wintery mix”), or
+   * {@code hail}. (If {@link MinutelyDataPoint#getPrecipIntensity()} is zero, then this property
+   * will not be defined.
    */
   @JsonProperty(PRECIP_TYPE)
   @Nullable
@@ -145,9 +150,9 @@ public class MinutelyDataPoint {
   }
 
   /**
-   * @return A numerical value between 0 and 1 (inclusive) representing the percentage of sky occluded by clouds. A
-   * value of 0 corresponds to clear sky, 0.4 to scattered clouds, 0.75 to broken cloud cover, and 1 to completely
-   * overcast skies.
+   * @return A numerical value between 0 and 1 (inclusive) representing the percentage of sky
+   * occluded by clouds. A value of 0 corresponds to clear sky, 0.4 to scattered clouds, 0.75 to
+   * broken cloud cover, and 1 to completely overcast skies.
    */
   @JsonProperty(CLOUD_COVER)
   public final double getCloudCover() {
@@ -173,8 +178,8 @@ public class MinutelyDataPoint {
   }
 
   /**
-   * @return A numerical value representing the columnar density of total atmospheric ozone at the given time in Dobson
-   * units.
+   * @return A numerical value representing the columnar density of total atmospheric ozone at the
+   * given time in Dobson units.
    */
   @JsonProperty(OZONE)
   public double getOzone() {
@@ -193,9 +198,10 @@ public class MinutelyDataPoint {
   @Override
   public String toString() {
     return String.format(
-        "MinutelyDataPoint{time=%d, precipIntensity=%s, precipProbability=%s, precipIntensityError=%s, "
-            + "precipType='%s'}", time, precipIntensity, precipProbability, precipIntensityError, precipType
-    );
+        "MinutelyDataPoint{time=%d, precipIntensity=%s, precipProbability=%s, " +
+            "precipIntensityError=%s, "
+            + "precipType='%s'}", time, precipIntensity, precipProbability, precipIntensityError,
+        precipType);
   }
 
   // ===========================================================

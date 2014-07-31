@@ -12,6 +12,12 @@ The Forecast API lets you query for most locations on the globe, and returns:
 - Hour-by-hour forecasts out to 48 hours
 - Day-by-day forecasts out to 7 days
 
+##Usage
+
+You can pull this project via Maven:
+
+
+
 ##Samples
 
 A simple request for the current temperature:
@@ -57,10 +63,7 @@ final Date sunsetDate = today.getSunriseTime();
 final SimpleDateFormat isoFormat = new SimpleDateFormat("HH:mm:ss", Locale.US);
 isoFormat.setTimeZone(TimeZone.getTimeZone(forecast.getTimezone()));
 
-// do wathever you want ;-)
-System.out.println("Sunrise today was at " + isoFormat.format(sunriseDate));
-System.out.println("Sunset today will be at " + isoFormat.format(sunsetDate));
-
+// do whatever you want ;-)
 System.out.println("Sunrise today was at " + isoFormat.format(sunriseDate));
 System.out.println("Sunset today will be at " + isoFormat.format(sunsetDate));
 ```

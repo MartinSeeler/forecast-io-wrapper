@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
 
 /**
- * @author Martin Seeler <developer@chasmo.de>
+ * @author Martin Seeler
  * @since 23.11.13 - 00:04
  */
 @RTFM("https://developer.forecast.io/docs/v2")
@@ -52,15 +52,13 @@ public final class HourlyDataBlock {
   }
 
   /**
-   * A machine-readable text summary of this data point, suitable for selecting an icon for
-   * display.
-   * If defined, this property will have one of the following values: clear-day, clear-night,
-   * rain,
+   * A machine-readable text summary of this data point, suitable for selecting an icon for display.
+   * If defined, this property will have one of the following values: clear-day, clear-night, rain,
    * snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.
    *
    * @return The machine-readable text summary.
    */
-  @JsonProperty()
+  @JsonProperty
   public String getIcon() {
     return mIcon;
   }
