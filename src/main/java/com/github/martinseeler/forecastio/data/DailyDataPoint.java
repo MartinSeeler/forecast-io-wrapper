@@ -3,6 +3,7 @@ package com.github.martinseeler.forecastio.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
@@ -15,179 +16,297 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class DailyDataPoint extends MinutelyDataPoint {
 
-  // ===========================================================
-  // Constants
-  // ===========================================================
+    // ===========================================================
+    // Constants
+    // ===========================================================
 
-  private static final String SUNSET_TIME = "sunsetTime";
+    private static final String SUNSET_TIME = "sunsetTime";
 
-  private static final String SUNRISE_TIME = "sunriseTime";
+    private static final String SUNRISE_TIME = "sunriseTime";
 
-  private static final String MOON_PHASE = "moonPhase";
+    private static final String MOON_PHASE = "moonPhase";
 
-  private static final String PRECIP_INTENSITY_MAX = "precipIntensityMax";
+    private static final String PRECIP_INTENSITY_MAX = "precipIntensityMax";
 
-  private static final String PRECIP_ACCUMULATION = "precipAccumulation";
+    private static final String PRECIP_ACCUMULATION = "precipAccumulation";
 
-  private static final String PRECIP_INTENSITY_MAX_TIME = "precipIntensityMaxTime";
+    private static final String PRECIP_INTENSITY_MAX_TIME = "precipIntensityMaxTime";
 
-  // ===========================================================
-  // Members / Fields
-  // ===========================================================
+    private static final String TEMPERATURE_MIN = "temperatureMin";
 
-  /** UNIX time of sunrise at this day. */
-  private long sunriseTime;
+    private static final String TEMPERATURE_MAX = "temperatureMax";
 
-  /** UNIX time of sunset at this day. */
-  private long sunsetTime;
+    private static final String TEMPERATURE_MIN_TIME = "temperatureMinTime";
 
-  /** A value representing the current moon phase. */
-  private double moonPhase;
+    private static final String TEMPERATURE_MAX_TIME = "temperatureMaxTime";
 
-  private double precipIntensityMax;
+    private static final String APPARENT_TEMPERATURE_MIN = "apparentTemperatureMin";
 
-  private double precipAccumulation;
+    private static final String APPARENT_TEMPERATURE_MAX = "apparentTemperatureMax";
 
-  private long precipIntensityMaxTime;
+    private static final String APPARENT_TEMPERATURE_MIN_TIME = "apparentTemperatureMinTime";
 
-  private double cloudCover;
+    private static final String APPARENT_TEMPERATURE_MAX_TIME = "apparentTemperatureMaxTime";
 
-  // ===========================================================
-  // Constructors
-  // ===========================================================
+    // ===========================================================
+    // Members / Fields
+    // ===========================================================
 
-  // ===========================================================
-  // Methods
-  // ===========================================================
+    /**
+     * UNIX time of sunrise at this day.
+     */
+    private long sunriseTime;
 
-  // ===========================================================
-  // Getter & Setter
-  // ===========================================================
+    /**
+     * UNIX time of sunset at this day.
+     */
+    private long sunsetTime;
 
-  /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunrise on the given day.
-   * (If no sunrise will occur on the given day, then the field will be 0. This can occur during
-   * summer and winter in very high or low latitudes.)
-   *
-   * @return The UNIX time of sunrise if available, {@code 0} otherwise.
-   */
-  @JsonProperty(SUNRISE_TIME)
-  public long getSunriseTimestamp() {
-    return sunriseTime;
-  }
+    /**
+     * A value representing the current moon phase.
+     */
+    private double moonPhase;
 
-  @JsonProperty(SUNRISE_TIME)
-  public void setSunriseTimestamp(final long sunriseTime) {
-    this.sunriseTime = sunriseTime;
-  }
+    private double precipIntensityMax;
 
-  /**
-   * @return A {@link java.util.Date}, where the {@link #getSunriseTime()} is multiplied by 1.000
-   * for milliseconds.
-   */
-  @NotNull
-  public Date getSunriseTime() {
-    return new Date(1000L * sunriseTime);
-  }
+    private double precipAccumulation;
 
-  /**
-   * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunset on the given day.
-   * (If no sunset will occur on the given day, then the field will be 0. This can occur during
-   * summer and winter in very high or low latitudes.)
-   *
-   * @return The UNIX time of sunset if available, {@code 0} otherwise.
-   */
-  @JsonProperty(SUNSET_TIME)
-  public long getSunsetTimestamp() {
-    return sunsetTime;
-  }
+    private long precipIntensityMaxTime;
 
-  @JsonProperty(SUNSET_TIME)
-  public void setSunsetTimestamp(final long sunsetTime) {
-    this.sunsetTime = sunsetTime;
-  }
+    private int temperatureMin;
 
-  /**
-   * @return A {@link java.util.Date}, where the {@link #getSunsetTime()} is multiplied by 1.000 for
-   * milliseconds.
-   */
-  @NotNull
-  public Date getSunsetTime() {
-    return new Date(1000L * sunsetTime);
-  }
+    private int temperatureMax;
 
-  /**
-   * A number representing the fractional part of the lunation number of the given day. This can be
-   * thought of as the “percentage complete” of the current lunar month: a value of 0 represents a
-   * new moon, a value of 0.25 represents a first quarter moon, a value of 0.5 represents a full
-   * moon, and a value of 0.75 represents a last quarter moon. (The ranges in between these
-   * represent waxing crescent, waxing gibbous, waning gibbous, and waning crescent moons,
-   * respectively.)
-   *
-   * @return The current moon phase value.
-   */
-  @JsonProperty(MOON_PHASE)
-  public double getMoonPhase() {
-    return moonPhase;
-  }
+    private int temperatureMinTime;
 
-  @JsonProperty(MOON_PHASE)
-  public void setMoonPhase(final double moonPhase) {
-    this.moonPhase = moonPhase;
-  }
+    private int temperatureMaxTime;
 
-  /**
-   * @return A numerical value representing the maximumum expected intensity of precipitation on the
-   * given day in inches of liquid water per hour.
-   */
-  @JsonProperty(PRECIP_INTENSITY_MAX)
-  public double getPrecipIntensityMax() {
-    return precipIntensityMax;
-  }
+    private int apparentTemperatureMin;
 
-  @JsonProperty(PRECIP_INTENSITY_MAX)
-  public void setPrecipIntensityMax(final double precipIntensityMax) {
-    this.precipIntensityMax = precipIntensityMax;
-  }
+    private int apparentTemperatureMax;
 
-  /**
-   * @return The UNIX time at which {@link DailyDataPoint#getPrecipIntensityMax} occurs.
-   */
-  @JsonProperty(PRECIP_INTENSITY_MAX_TIME)
-  public long getPrecipIntensityMaxTime() {
-    return precipIntensityMaxTime;
-  }
+    private int apparentTemperatureMinTime;
 
-  @JsonProperty(PRECIP_INTENSITY_MAX_TIME)
-  public void setPrecipIntensityMaxTime(final long precipIntensityMaxTime) {
-    this.precipIntensityMaxTime = precipIntensityMaxTime;
-  }
+    private int apparentTemperatureMaxTime;
 
-  /**
-   * @return the amount of snowfall accumulation expected to occur on the given day. (If no
-   * accumulation is expected, this property will not be defined and is {@code 0}.
-   */
-  @JsonProperty(PRECIP_ACCUMULATION)
-  public double getPrecipAccumulation() {
-    return precipAccumulation;
-  }
+    private double cloudCover;
 
-  @JsonProperty(PRECIP_ACCUMULATION)
-  public void setPrecipAccumulation(final double precipAccumulation) {
-    this.precipAccumulation = precipAccumulation;
-  }
+    // ===========================================================
+    // Constructors
+    // ===========================================================
 
-  // ===========================================================
-  // Methods for/from SuperClass/Interfaces
-  // ===========================================================
+    // ===========================================================
+    // Methods
+    // ===========================================================
 
-  @Override
-  public String toString() {
-    return String.format("DailyDataPoint{sunriseTime=%d, sunsetTime=%d}", sunriseTime, sunsetTime);
-  }
+    // ===========================================================
+    // Getter & Setter
+    // ===========================================================
 
-  // ===========================================================
-  // Inner and Anonymous Classes
-  // ===========================================================
+    /**
+     * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunrise on the given day.
+     * (If no sunrise will occur on the given day, then the field will be 0. This can occur during
+     * summer and winter in very high or low latitudes.)
+     *
+     * @return The UNIX time of sunrise if available, {@code 0} otherwise.
+     */
+    @JsonProperty(SUNRISE_TIME)
+    public long getSunriseTimestamp() {
+        return sunriseTime;
+    }
+
+    @JsonProperty(SUNRISE_TIME)
+    public void setSunriseTimestamp(final long sunriseTime) {
+        this.sunriseTime = sunriseTime;
+    }
+
+    /**
+     * @return A {@link java.util.Date}, where the {@link #getSunriseTime()} is multiplied by 1.000
+     * for milliseconds.
+     */
+    @NotNull
+    public Date getSunriseTime() {
+        return new Date(1000L * sunriseTime);
+    }
+
+    /**
+     * The UNIX time (that is, seconds since midnight GMT on 1 Jan 1970) of sunset on the given day.
+     * (If no sunset will occur on the given day, then the field will be 0. This can occur during
+     * summer and winter in very high or low latitudes.)
+     *
+     * @return The UNIX time of sunset if available, {@code 0} otherwise.
+     */
+    @JsonProperty(SUNSET_TIME)
+    public long getSunsetTimestamp() {
+        return sunsetTime;
+    }
+
+    @JsonProperty(SUNSET_TIME)
+    public void setSunsetTimestamp(final long sunsetTime) {
+        this.sunsetTime = sunsetTime;
+    }
+
+    /**
+     * @return A {@link java.util.Date}, where the {@link #getSunsetTime()} is multiplied by 1.000 for
+     * milliseconds.
+     */
+    @NotNull
+    public Date getSunsetTime() {
+        return new Date(1000L * sunsetTime);
+    }
+
+    /**
+     * A number representing the fractional part of the lunation number of the given day. This can be
+     * thought of as the “percentage complete” of the current lunar month: a value of 0 represents a
+     * new moon, a value of 0.25 represents a first quarter moon, a value of 0.5 represents a full
+     * moon, and a value of 0.75 represents a last quarter moon. (The ranges in between these
+     * represent waxing crescent, waxing gibbous, waning gibbous, and waning crescent moons,
+     * respectively.)
+     *
+     * @return The current moon phase value.
+     */
+    @JsonProperty(MOON_PHASE)
+    public double getMoonPhase() {
+        return moonPhase;
+    }
+
+    @JsonProperty(MOON_PHASE)
+    public void setMoonPhase(final double moonPhase) {
+        this.moonPhase = moonPhase;
+    }
+
+    /**
+     * @return A numerical value representing the maximumum expected intensity of precipitation on the
+     * given day in inches of liquid water per hour.
+     */
+    @JsonProperty(PRECIP_INTENSITY_MAX)
+    public double getPrecipIntensityMax() {
+        return precipIntensityMax;
+    }
+
+    @JsonProperty(PRECIP_INTENSITY_MAX)
+    public void setPrecipIntensityMax(final double precipIntensityMax) {
+        this.precipIntensityMax = precipIntensityMax;
+    }
+
+    /**
+     * @return The UNIX time at which {@link DailyDataPoint#getPrecipIntensityMax} occurs.
+     */
+    @JsonProperty(PRECIP_INTENSITY_MAX_TIME)
+    public long getPrecipIntensityMaxTime() {
+        return precipIntensityMaxTime;
+    }
+
+    @JsonProperty(PRECIP_INTENSITY_MAX_TIME)
+    public void setPrecipIntensityMaxTime(final long precipIntensityMaxTime) {
+        this.precipIntensityMaxTime = precipIntensityMaxTime;
+    }
+
+    /**
+     * @return the amount of snowfall accumulation expected to occur on the given day. (If no
+     * accumulation is expected, this property will not be defined and is {@code 0}.
+     */
+    @JsonProperty(PRECIP_ACCUMULATION)
+    public double getPrecipAccumulation() {
+        return precipAccumulation;
+    }
+
+    @JsonProperty(PRECIP_ACCUMULATION)
+    public void setPrecipAccumulation(final double precipAccumulation) {
+        this.precipAccumulation = precipAccumulation;
+    }
+
+    @JsonProperty(TEMPERATURE_MIN)
+    public int getTemperatureMin() {
+        return temperatureMin;
+    }
+
+    @JsonProperty(TEMPERATURE_MIN)
+    public void setTemperatureMin(int temperatureMin) {
+        this.temperatureMin = temperatureMin;
+    }
+
+    @JsonProperty(TEMPERATURE_MAX)
+    public int getTemperatureMax() {
+        return temperatureMax;
+    }
+
+    @JsonProperty(TEMPERATURE_MAX)
+    public void setTemperatureMax(int temperatureMax) {
+        this.temperatureMax = temperatureMax;
+    }
+
+    @JsonProperty(TEMPERATURE_MIN_TIME)
+    public int getTemperatureMinTime() {
+        return temperatureMinTime;
+    }
+
+    @JsonProperty(TEMPERATURE_MIN_TIME)
+    public void setTemperatureMinTime(int temperatureMinTime) {
+        this.temperatureMinTime = temperatureMinTime;
+    }
+
+    @JsonProperty(TEMPERATURE_MAX_TIME)
+    public int getTemperatureMaxTime() {
+        return temperatureMaxTime;
+    }
+
+    @JsonProperty(TEMPERATURE_MAX_TIME)
+    public void setTemperatureMaxTime(int temperatureMaxTime) {
+        this.temperatureMaxTime = temperatureMaxTime;
+    }
+
+    @JsonProperty(APPARENT_TEMPERATURE_MIN)
+    public int getApparentTemperatureMin() {
+        return apparentTemperatureMin;
+    }
+
+    @JsonProperty(APPARENT_TEMPERATURE_MIN)
+    public void setApparentTemperatureMin(int apparentTemperatureMin) {
+        this.apparentTemperatureMin = apparentTemperatureMin;
+    }
+
+    @JsonProperty(APPARENT_TEMPERATURE_MAX)
+    public int getApparentTemperatureMax() {
+        return apparentTemperatureMax;
+    }
+
+    @JsonProperty(APPARENT_TEMPERATURE_MAX)
+    public void setApparentTemperatureMax(int apparentTemperatureMax) {
+        this.apparentTemperatureMax = apparentTemperatureMax;
+    }
+
+    @JsonProperty(APPARENT_TEMPERATURE_MIN_TIME)
+    public int getApparentTemperatureMinTime() {
+        return apparentTemperatureMinTime;
+    }
+
+    @JsonProperty(APPARENT_TEMPERATURE_MIN_TIME)
+    public void setApparentTemperatureMinTime(int apparentTemperatureMinTime) {
+        this.apparentTemperatureMinTime = apparentTemperatureMinTime;
+    }
+
+    @JsonProperty(APPARENT_TEMPERATURE_MAX_TIME)
+    public int getApparentTemperatureMaxTime() {
+        return apparentTemperatureMaxTime;
+    }
+
+    @JsonProperty(APPARENT_TEMPERATURE_MAX_TIME)
+    public void setApparentTemperatureMaxTime(int apparentTemperatureMaxTime) {
+        this.apparentTemperatureMaxTime = apparentTemperatureMaxTime;
+    }
+
+    // ===========================================================
+    // Methods for/from SuperClass/Interfaces
+    // ===========================================================
+
+    @Override
+    public String toString() {
+        return String.format("DailyDataPoint{sunriseTime=%d, sunsetTime=%d}", sunriseTime, sunsetTime);
+    }
+
+    // ===========================================================
+    // Inner and Anonymous Classes
+    // ===========================================================
 
 }
