@@ -77,17 +77,17 @@ public final class DailyDataPoint extends MinutelyDataPoint {
 
     private int temperatureMax;
 
-    private int temperatureMinTime;
+    private long temperatureMinTime;
 
-    private int temperatureMaxTime;
+    private long temperatureMaxTime;
 
     private int apparentTemperatureMin;
 
     private int apparentTemperatureMax;
 
-    private int apparentTemperatureMinTime;
+    private long apparentTemperatureMinTime;
 
-    private int apparentTemperatureMaxTime;
+    private long apparentTemperatureMaxTime;
 
     private double cloudCover;
 
@@ -237,22 +237,22 @@ public final class DailyDataPoint extends MinutelyDataPoint {
     }
 
     @JsonProperty(TEMPERATURE_MIN_TIME)
-    public int getTemperatureMinTime() {
+    public long getTemperatureMinTime() {
         return temperatureMinTime;
     }
 
     @JsonProperty(TEMPERATURE_MIN_TIME)
-    public void setTemperatureMinTime(int temperatureMinTime) {
+    public void setTemperatureMinTime(long temperatureMinTime) {
         this.temperatureMinTime = temperatureMinTime;
     }
 
     @JsonProperty(TEMPERATURE_MAX_TIME)
-    public int getTemperatureMaxTime() {
+    public long getTemperatureMaxTime() {
         return temperatureMaxTime;
     }
 
     @JsonProperty(TEMPERATURE_MAX_TIME)
-    public void setTemperatureMaxTime(int temperatureMaxTime) {
+    public void setTemperatureMaxTime(long temperatureMaxTime) {
         this.temperatureMaxTime = temperatureMaxTime;
     }
 
@@ -277,22 +277,22 @@ public final class DailyDataPoint extends MinutelyDataPoint {
     }
 
     @JsonProperty(APPARENT_TEMPERATURE_MIN_TIME)
-    public int getApparentTemperatureMinTime() {
+    public long getApparentTemperatureMinTime() {
         return apparentTemperatureMinTime;
     }
 
     @JsonProperty(APPARENT_TEMPERATURE_MIN_TIME)
-    public void setApparentTemperatureMinTime(int apparentTemperatureMinTime) {
+    public void setApparentTemperatureMinTime(long apparentTemperatureMinTime) {
         this.apparentTemperatureMinTime = apparentTemperatureMinTime;
     }
 
     @JsonProperty(APPARENT_TEMPERATURE_MAX_TIME)
-    public int getApparentTemperatureMaxTime() {
+    public long getApparentTemperatureMaxTime() {
         return apparentTemperatureMaxTime;
     }
 
     @JsonProperty(APPARENT_TEMPERATURE_MAX_TIME)
-    public void setApparentTemperatureMaxTime(int apparentTemperatureMaxTime) {
+    public void setApparentTemperatureMaxTime(long apparentTemperatureMaxTime) {
         this.apparentTemperatureMaxTime = apparentTemperatureMaxTime;
     }
 
