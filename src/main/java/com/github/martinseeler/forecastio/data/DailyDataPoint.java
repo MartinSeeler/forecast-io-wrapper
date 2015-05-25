@@ -3,6 +3,7 @@ package com.github.martinseeler.forecastio.data;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gag.annotation.remark.RTFM;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
@@ -31,17 +32,39 @@ public final class DailyDataPoint extends MinutelyDataPoint {
 
   private static final String PRECIP_INTENSITY_MAX_TIME = "precipIntensityMaxTime";
 
+  private static final String TEMPERATURE_MIN = "temperatureMin";
+
+  private static final String TEMPERATURE_MAX = "temperatureMax";
+
+  private static final String TEMPERATURE_MIN_TIME = "temperatureMinTime";
+
+  private static final String TEMPERATURE_MAX_TIME = "temperatureMaxTime";
+
+  private static final String APPARENT_TEMPERATURE_MIN = "apparentTemperatureMin";
+
+  private static final String APPARENT_TEMPERATURE_MAX = "apparentTemperatureMax";
+
+  private static final String APPARENT_TEMPERATURE_MIN_TIME = "apparentTemperatureMinTime";
+
+  private static final String APPARENT_TEMPERATURE_MAX_TIME = "apparentTemperatureMaxTime";
+
   // ===========================================================
   // Members / Fields
   // ===========================================================
 
-  /** UNIX time of sunrise at this day. */
+  /**
+   * UNIX time of sunrise at this day.
+   */
   private long sunriseTime;
 
-  /** UNIX time of sunset at this day. */
+  /**
+   * UNIX time of sunset at this day.
+   */
   private long sunsetTime;
 
-  /** A value representing the current moon phase. */
+  /**
+   * A value representing the current moon phase.
+   */
   private double moonPhase;
 
   private double precipIntensityMax;
@@ -49,6 +72,22 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   private double precipAccumulation;
 
   private long precipIntensityMaxTime;
+
+  private int temperatureMin;
+
+  private int temperatureMax;
+
+  private long temperatureMinTime;
+
+  private long temperatureMaxTime;
+
+  private int apparentTemperatureMin;
+
+  private int apparentTemperatureMax;
+
+  private long apparentTemperatureMinTime;
+
+  private long apparentTemperatureMaxTime;
 
   private double cloudCover;
 
@@ -175,6 +214,86 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   @JsonProperty(PRECIP_ACCUMULATION)
   public void setPrecipAccumulation(final double precipAccumulation) {
     this.precipAccumulation = precipAccumulation;
+  }
+
+  @JsonProperty(TEMPERATURE_MIN)
+  public int getTemperatureMin() {
+    return temperatureMin;
+  }
+
+  @JsonProperty(TEMPERATURE_MIN)
+  public void setTemperatureMin(int temperatureMin) {
+    this.temperatureMin = temperatureMin;
+  }
+
+  @JsonProperty(TEMPERATURE_MAX)
+  public int getTemperatureMax() {
+    return temperatureMax;
+  }
+
+  @JsonProperty(TEMPERATURE_MAX)
+  public void setTemperatureMax(int temperatureMax) {
+    this.temperatureMax = temperatureMax;
+  }
+
+  @JsonProperty(TEMPERATURE_MIN_TIME)
+  public long getTemperatureMinTime() {
+    return temperatureMinTime;
+  }
+
+  @JsonProperty(TEMPERATURE_MIN_TIME)
+  public void setTemperatureMinTime(long temperatureMinTime) {
+    this.temperatureMinTime = temperatureMinTime;
+  }
+
+  @JsonProperty(TEMPERATURE_MAX_TIME)
+  public long getTemperatureMaxTime() {
+    return temperatureMaxTime;
+  }
+
+  @JsonProperty(TEMPERATURE_MAX_TIME)
+  public void setTemperatureMaxTime(long temperatureMaxTime) {
+    this.temperatureMaxTime = temperatureMaxTime;
+  }
+
+  @JsonProperty(APPARENT_TEMPERATURE_MIN)
+  public int getApparentTemperatureMin() {
+    return apparentTemperatureMin;
+  }
+
+  @JsonProperty(APPARENT_TEMPERATURE_MIN)
+  public void setApparentTemperatureMin(int apparentTemperatureMin) {
+    this.apparentTemperatureMin = apparentTemperatureMin;
+  }
+
+  @JsonProperty(APPARENT_TEMPERATURE_MAX)
+  public int getApparentTemperatureMax() {
+    return apparentTemperatureMax;
+  }
+
+  @JsonProperty(APPARENT_TEMPERATURE_MAX)
+  public void setApparentTemperatureMax(int apparentTemperatureMax) {
+    this.apparentTemperatureMax = apparentTemperatureMax;
+  }
+
+  @JsonProperty(APPARENT_TEMPERATURE_MIN_TIME)
+  public long getApparentTemperatureMinTime() {
+    return apparentTemperatureMinTime;
+  }
+
+  @JsonProperty(APPARENT_TEMPERATURE_MIN_TIME)
+  public void setApparentTemperatureMinTime(long apparentTemperatureMinTime) {
+    this.apparentTemperatureMinTime = apparentTemperatureMinTime;
+  }
+
+  @JsonProperty(APPARENT_TEMPERATURE_MAX_TIME)
+  public long getApparentTemperatureMaxTime() {
+    return apparentTemperatureMaxTime;
+  }
+
+  @JsonProperty(APPARENT_TEMPERATURE_MAX_TIME)
+  public void setApparentTemperatureMaxTime(long apparentTemperatureMaxTime) {
+    this.apparentTemperatureMaxTime = apparentTemperatureMaxTime;
   }
 
   // ===========================================================
