@@ -68,15 +68,17 @@ public final class ForecastIO {
    *
    * @param latitude  The requested latitude.
    * @param longitude The requested longitude.
+   * @param unixTime Works like a time machine: Request the data as if the request was
+   *                 done at that time. (seconds since midnight GMT on 1 Jan 1970)
    *
    * @return The retrieved forecast or @{code null}, if the service is not available.
    */
   @Nullable
   @Magic(type = MagicType.WHITE)
-  public Forecast getForecastFor(final double latitude, final double longitude) {
+  public Forecast getForecastFor(final double latitude, final double longitude, long unixTime) {
     try {
       final URL url =
-          new URL(BASE_DOMAIN + '/' + apiKey + '/' + latitude + ',' + longitude + "?units=si");
+              new URL(BASE_DOMAIN + '/' + apiKey + '/' + latitude + ',' + longitude + ',' + unixTime +"?units=si");
       final InputStream responseStream = url.openStream();
       final ObjectMapper mapper = new ObjectMapper();
       return mapper.readValue(responseStream, Forecast.class);
@@ -92,6 +94,21 @@ public final class ForecastIO {
       System.err.println("There was an error while reading the data!");
     }
     return null;
+  }
+
+  /**
+   * Performs a request to the API with the geographic coordinates of a location.
+   * Equal to #getForecastFor(latitude, longitude, System.currentTimeMillis() / 1000)
+   *
+   * @param latitude  The requested latitude.
+   * @param longitude The requested longitude.
+   *
+   * @return The retrieved forecast or @{code null}, if the service is not available.
+   */
+  @Nullable
+  @Magic(type = MagicType.WHITE)
+  public Forecast getForecastFor(final double latitude, final double longitude) {
+    return getForecastFor(latitude, longitude, System.currentTimeMillis() / 1000);
   }
 
   // ===========================================================
