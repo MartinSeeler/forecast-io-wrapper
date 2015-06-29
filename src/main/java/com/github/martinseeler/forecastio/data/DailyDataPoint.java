@@ -67,6 +67,11 @@ public final class DailyDataPoint extends MinutelyDataPoint {
    */
   private double moonPhase;
 
+  /**
+   * The machine-readable text summary.
+   */
+  private String icon;
+
   private double precipIntensityMax;
 
   private double precipAccumulation;
@@ -214,6 +219,23 @@ public final class DailyDataPoint extends MinutelyDataPoint {
   @JsonProperty(PRECIP_ACCUMULATION)
   public void setPrecipAccumulation(final double precipAccumulation) {
     this.precipAccumulation = precipAccumulation;
+  }
+
+  /**
+   * A machine-readable text summary of this data point, suitable for selecting an icon for display.
+   * If defined, this property will have one of the following values: clear-day, clear-night, rain,
+   * snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night.
+   *
+   * @return The machine-readable text summary.
+   */
+  @JsonProperty(DailyDataBlock.ICON_PROPERTY)
+  public String getIcon() {
+    return icon;
+  }
+
+  @JsonProperty(DailyDataBlock.ICON_PROPERTY)
+  public void setIcon(final String icon) {
+    this.icon = icon;
   }
 
   @JsonProperty(TEMPERATURE_MIN)
